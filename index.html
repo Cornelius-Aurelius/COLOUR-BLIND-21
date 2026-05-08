@@ -4,30 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Blackjack 21 Kit Match | Cornelius Aurelius</title>
-
-<meta name="description" content="Blackjack 21 Kit Match is a football colour-blindness training game by Cornelius Aurelius. Match football kit cards using non-colour cues such as numbers, patterns, socks, sleeves, shorts, badges and contrast." />
-<meta name="keywords" content="Cornelius Aurelius, Blackjack 21 Kit Match, colour blindness in football, colour blind football game, football kit match, kit clash training, colour confusion football" />
+<title>Colour Blindness 21 | Cornelius Aurelius</title>
+<meta name="description" content="Colour Blindness 21 is a football kit-matching blackjack-style colour-blindness game by Cornelius Aurelius." />
 <meta name="author" content="Cornelius Aurelius" />
-
-<meta property="og:title" content="Blackjack 21 Kit Match — Cornelius Aurelius" />
-<meta property="og:description" content="A football kit-matching Blackjack 21 game for training visual cues beyond colour." />
-<meta property="og:type" content="website" />
 
 <style>
 :root{
-  --grass1:#075c2c;
-  --grass2:#043f20;
-  --grass3:#021b0d;
+  --grass1:#076131;
+  --grass2:#043e20;
+  --grass3:#02190c;
   --gold:#f7d56b;
   --gold2:#fff1b8;
-  --dark:#11100b;
-  --panel:#23190e;
   --red:#b91616;
-  --green:#258112;
+  --green:#23820f;
   --cream:#fffdf0;
   --muted:rgba(255,255,255,.72);
-  --line:rgba(247,213,107,.62);
   --shadow:rgba(0,0,0,.38);
 }
 
@@ -38,17 +29,13 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
   min-height:100vh;
   font-family:Arial, Helvetica, sans-serif;
   color:white;
   background:
-    radial-gradient(circle at center 18%, rgba(255,255,255,.12), transparent 25%),
-    linear-gradient(180deg,var(--grass1),var(--grass2) 58%,var(--grass3));
+    radial-gradient(circle at center 25%, rgba(255,255,255,.1), transparent 28%),
+    linear-gradient(180deg,var(--grass1),var(--grass2) 62%,var(--grass3));
   overflow-x:hidden;
 }
 
@@ -58,134 +45,114 @@ body::before{
   inset:0;
   pointer-events:none;
   background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.032) 0 2px, transparent 2px 78px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 2px, transparent 2px 78px);
-  opacity:.45;
+    repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 2px, transparent 2px 82px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.016) 0 2px, transparent 2px 82px);
+  opacity:.4;
 }
 
-a{
-  color:inherit;
-}
-
-.page{
-  width:100%;
+.app{
+  width:min(520px,100%);
   min-height:100vh;
-  padding:10px;
+  margin:auto;
+  padding:8px;
 }
 
-.shell{
-  width:min(1180px,100%);
-  margin:0 auto;
+.top{
   display:grid;
-  grid-template-columns:minmax(330px,560px) minmax(300px,1fr);
-  gap:16px;
-  align-items:start;
-}
-
-@media(max-width:880px){
-  .shell{
-    grid-template-columns:1fr;
-    width:min(560px,100%);
-  }
-}
-
-.header{
-  text-align:center;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:8px;
   margin-bottom:8px;
 }
 
-.title{
+.brand-title{
+  text-align:left;
+}
+
+.brand-title h1{
   font-family:Georgia, "Times New Roman", serif;
-  font-size:clamp(1.8rem,7vw,3.35rem);
-  letter-spacing:2px;
   color:var(--gold2);
+  font-size:clamp(1.55rem,7vw,2.55rem);
+  letter-spacing:1.5px;
   text-transform:uppercase;
-  text-shadow:
-    0 3px 0 #6d4b0c,
-    0 0 18px rgba(255,220,90,.7);
-  line-height:.95;
+  line-height:1;
+  text-shadow:0 3px 0 #6d4b0c,0 0 16px rgba(255,220,90,.55);
 }
 
-.subtitle{
-  font-size:clamp(.7rem,2.3vw,.82rem);
-  text-transform:uppercase;
+.brand-title p{
+  color:rgba(255,255,255,.66);
+  font-size:.68rem;
   letter-spacing:1.1px;
-  color:var(--muted);
-  margin-top:6px;
-  line-height:1.35;
+  text-transform:uppercase;
+  margin-top:3px;
 }
 
-.topbar{
+.menu-btn{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:2px solid rgba(247,213,107,.7);
+  background:linear-gradient(180deg,#2d2414,#0e0c08);
+  color:var(--gold2);
+  font-size:1.5rem;
+  cursor:pointer;
+  box-shadow:0 7px 16px rgba(0,0,0,.35);
+}
+
+.scorebar{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
-  gap:7px;
+  gap:6px;
   margin-bottom:8px;
 }
 
 .stat{
-  background:linear-gradient(180deg,#322613,#12100b);
-  border:2px solid rgba(255,220,120,.75);
+  min-height:54px;
   border-radius:14px;
-  min-height:58px;
+  background:linear-gradient(180deg,#302412,#110f09);
+  border:2px solid rgba(247,213,107,.7);
   display:flex;
   flex-direction:column;
-  justify-content:center;
   align-items:center;
-  box-shadow:0 7px 18px var(--shadow);
+  justify-content:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.3);
   text-align:center;
-  padding:6px;
 }
 
 .stat small{
   color:var(--gold2);
-  font-size:.62rem;
-  letter-spacing:1.3px;
+  font-size:.56rem;
+  letter-spacing:1.2px;
   font-weight:900;
 }
 
 .stat strong{
-  font-size:clamp(1rem,4.5vw,1.25rem);
-}
-
-.game-card{
-  width:100%;
+  font-size:1.05rem;
 }
 
 .table{
   position:relative;
-  min-height:760px;
-  border-radius:28px;
+  min-height:720px;
+  border-radius:26px;
   border:3px solid rgba(247,213,107,.55);
   background:
-    radial-gradient(circle at center, rgba(255,255,255,.08), transparent 30%),
+    radial-gradient(circle at center, rgba(255,255,255,.08), transparent 29%),
     linear-gradient(180deg,#087139,#043f20);
   box-shadow:
-    inset 0 0 90px rgba(0,0,0,.3),
-    0 10px 35px rgba(0,0,0,.38);
+    inset 0 0 82px rgba(0,0,0,.3),
+    0 10px 32px rgba(0,0,0,.35);
   overflow:hidden;
-  padding:12px;
-}
-
-@media(max-width:420px){
-  .page{
-    padding:7px;
-  }
-
-  .table{
-    min-height:720px;
-    border-radius:22px;
-  }
 }
 
 .pitch-line{
   position:absolute;
   left:50%;
-  top:43%;
-  transform:translate(-50%,-50%);
-  width:270px;
-  height:270px;
-  border:2px solid rgba(255,255,255,.18);
+  top:45%;
+  width:245px;
+  height:245px;
+  border:2px solid rgba(255,255,255,.14);
   border-radius:50%;
+  transform:translate(-50%,-50%);
   pointer-events:none;
 }
 
@@ -195,39 +162,13 @@ a{
   left:50%;
   top:-300px;
   width:2px;
-  height:860px;
-  background:rgba(255,255,255,.13);
+  height:820px;
+  background:rgba(255,255,255,.11);
 }
 
-.mission{
-  position:absolute;
-  top:12px;
-  left:12px;
-  right:12px;
-  background:rgba(6,40,20,.86);
-  border:2px solid rgba(247,213,107,.7);
-  border-radius:18px;
-  padding:10px;
-  text-align:center;
-  z-index:4;
-}
-
-.mission h1{
-  color:var(--gold2);
-  font-size:clamp(.9rem,3vw,1rem);
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-}
-
-.mission p{
-  color:rgba(255,255,255,.86);
-  font-size:clamp(.72rem,2.4vw,.8rem);
-  line-height:1.35;
-  margin-top:4px;
-}
-
-.dealer-zone,
-.player-zone{
+.dealer-hand,
+.match-area,
+.player-hand{
   position:absolute;
   left:0;
   right:0;
@@ -236,128 +177,159 @@ a{
   align-items:center;
 }
 
-.dealer-zone{
-  top:116px;
+.dealer-hand{
+  top:28px;
 }
 
-.player-zone{
-  bottom:184px;
+.match-area{
+  top:190px;
+}
+
+.player-hand{
+  bottom:164px;
 }
 
 .zone-label{
-  min-width:158px;
+  min-width:132px;
   text-align:center;
-  padding:7px 15px;
-  border-radius:12px;
-  background:rgba(6,40,20,.88);
-  border:2px solid rgba(247,213,107,.75);
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(5,31,16,.82);
+  border:1px solid rgba(247,213,107,.58);
   color:var(--gold2);
   text-transform:uppercase;
-  letter-spacing:2.4px;
+  letter-spacing:1.8px;
   font-weight:900;
-  font-size:.78rem;
+  font-size:.66rem;
   margin-bottom:7px;
 }
 
 .total-bubble{
-  width:58px;
-  height:52px;
+  width:50px;
+  height:46px;
   display:grid;
   place-items:center;
   background:#063719;
-  border:3px solid rgba(247,213,107,.85);
+  border:3px solid rgba(247,213,107,.82);
   border-radius:50% 50% 50% 12px;
   transform:rotate(45deg);
-  box-shadow:0 7px 16px rgba(0,0,0,.36);
-  margin-bottom:8px;
+  box-shadow:0 7px 14px rgba(0,0,0,.32);
+  margin-bottom:7px;
 }
 
 .total-bubble strong{
   transform:rotate(-45deg);
   color:white;
-  font-size:1.38rem;
+  font-size:1.15rem;
+}
+
+.hand-cards{
+  min-height:92px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hand-cards .kit-card{
+  margin-left:-18px;
+}
+
+.hand-cards .kit-card:first-child{
+  margin-left:0;
 }
 
 .cards-row{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:14px;
+  gap:12px;
 }
 
 .vs{
-  width:45px;
-  height:45px;
+  width:42px;
+  height:42px;
   border-radius:50%;
   display:grid;
   place-items:center;
   background:#111;
   color:var(--gold2);
   font-weight:900;
-  border:2px solid rgba(247,213,107,.85);
-  box-shadow:0 0 22px rgba(247,213,107,.55);
+  border:2px solid rgba(247,213,107,.82);
+  box-shadow:0 0 20px rgba(247,213,107,.48);
   flex:0 0 auto;
 }
 
 .kit-card{
-  width:128px;
-  height:168px;
+  width:112px;
+  height:146px;
   background:#fffdf0;
   border-radius:13px;
   border:4px solid #111;
-  box-shadow:0 9px 16px rgba(0,0,0,.38);
+  box-shadow:0 8px 15px rgba(0,0,0,.36);
   position:relative;
   overflow:hidden;
   color:#111;
 }
 
-@media(max-width:380px){
-  .cards-row{
-    gap:9px;
-  }
-
-  .kit-card{
-    width:112px;
-    height:148px;
-  }
-
-  .vs{
-    width:40px;
-    height:40px;
-  }
-}
-
 .kit-card.small{
-  width:76px;
-  height:104px;
+  width:68px;
+  height:94px;
   border-radius:9px;
   border-width:3px;
 }
 
+.kit-card.dealer-small{
+  width:70px;
+  height:96px;
+  border-radius:9px;
+  border-width:3px;
+}
+
+@media(max-width:380px){
+  .table{
+    min-height:690px;
+  }
+
+  .kit-card{
+    width:100px;
+    height:132px;
+  }
+
+  .cards-row{
+    gap:8px;
+  }
+
+  .vs{
+    width:38px;
+    height:38px;
+  }
+}
+
 .kit-label{
-  margin-top:5px;
+  margin-top:4px;
   text-align:center;
-  font-size:.66rem;
+  font-size:.6rem;
   background:#162115;
   color:white;
-  border:1px solid rgba(247,213,107,.45);
+  border:1px solid rgba(247,213,107,.38);
   border-radius:999px;
-  padding:4px 9px;
+  padding:3px 8px;
   font-weight:900;
   letter-spacing:1px;
 }
 
 .value{
   position:absolute;
-  top:6px;
-  left:8px;
+  top:5px;
+  left:7px;
   font-weight:900;
-  font-size:1.4rem;
+  font-size:1.18rem;
   z-index:5;
 }
 
-.kit-card.small .value{
-  font-size:.92rem;
+.kit-card.small .value,
+.kit-card.dealer-small .value{
+  font-size:.8rem;
   top:4px;
   left:5px;
 }
@@ -366,8 +338,8 @@ a{
   position:absolute;
   left:50%;
   top:50%;
-  width:88px;
-  height:96px;
+  width:76px;
+  height:84px;
   transform:translate(-50%,-45%);
   background:var(--shirt-main);
   clip-path:polygon(
@@ -379,16 +351,10 @@ a{
   border:4px solid var(--shirt-border);
 }
 
-@media(max-width:380px){
-  .shirt{
-    width:74px;
-    height:82px;
-  }
-}
-
-.kit-card.small .shirt{
-  width:51px;
-  height:58px;
+.kit-card.small .shirt,
+.kit-card.dealer-small .shirt{
+  width:46px;
+  height:52px;
   border-width:3px;
 }
 
@@ -408,77 +374,63 @@ a{
   transform:translate(-50%,-50%);
   color:var(--number-colour);
   font-weight:900;
-  font-size:2.05rem;
+  font-size:1.78rem;
   text-shadow:0 1px 0 rgba(0,0,0,.25);
 }
 
-.kit-card.small .shirt::after{
-  font-size:1.18rem;
+.kit-card.small .shirt::after,
+.kit-card.dealer-small .shirt::after{
+  font-size:1rem;
 }
 
 .sock{
   position:absolute;
-  bottom:16px;
-  width:18px;
-  height:24px;
+  bottom:13px;
+  width:16px;
+  height:21px;
   background:var(--sock-colour);
   border:2px solid #111;
   border-radius:3px;
 }
 
-.sock.left{
-  left:44px;
-}
+.sock.left{left:38px;}
+.sock.right{right:38px;}
 
-.sock.right{
-  right:44px;
-}
-
-@media(max-width:380px){
-  .sock.left{
-    left:36px;
-  }
-
-  .sock.right{
-    right:36px;
-  }
-}
-
-.kit-card.small .sock{
-  bottom:8px;
-  width:10px;
-  height:14px;
+.kit-card.small .sock,
+.kit-card.dealer-small .sock{
+  bottom:7px;
+  width:9px;
+  height:13px;
   border-width:1px;
 }
 
-.kit-card.small .sock.left{
-  left:25px;
-}
+.kit-card.small .sock.left,
+.kit-card.dealer-small .sock.left{left:23px;}
 
-.kit-card.small .sock.right{
-  right:25px;
-}
+.kit-card.small .sock.right,
+.kit-card.dealer-small .sock.right{right:23px;}
 
 .cue-text{
   position:absolute;
-  bottom:4px;
+  bottom:3px;
   left:0;
   right:0;
   text-align:center;
-  font-size:.52rem;
+  font-size:.48rem;
   color:#333;
   font-weight:900;
-  letter-spacing:.5px;
+  letter-spacing:.4px;
   text-transform:uppercase;
 }
 
-.kit-card.small .cue-text{
+.kit-card.small .cue-text,
+.kit-card.dealer-small .cue-text{
   display:none;
 }
 
-.brand{
+.table-brand{
   position:absolute;
-  top:346px;
+  top:385px;
   left:50%;
   transform:translateX(-50%);
   width:95%;
@@ -486,92 +438,236 @@ a{
   pointer-events:none;
 }
 
-.brand-main{
+.table-brand-main{
   font-family:Georgia, "Times New Roman", serif;
-  color:rgba(247,213,107,.62);
-  font-size:clamp(1.45rem,7vw,1.95rem);
+  color:rgba(247,213,107,.52);
+  font-size:clamp(1.35rem,7vw,1.75rem);
   text-transform:uppercase;
-  letter-spacing:4px;
+  letter-spacing:3px;
   transform:rotate(-3deg);
 }
 
-.brand-sub{
-  color:rgba(255,255,255,.75);
-  font-size:.7rem;
-  letter-spacing:1.7px;
+.table-brand-sub{
+  color:rgba(255,255,255,.58);
+  font-size:.62rem;
+  letter-spacing:1.5px;
   text-transform:uppercase;
-  margin-top:6px;
+  margin-top:5px;
 }
 
-.rule-strip{
+.bet-pill{
   position:absolute;
-  top:424px;
   left:50%;
+  bottom:270px;
   transform:translateX(-50%);
-  width:94%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:rgba(10,18,12,.68);
+  border:1px solid rgba(247,213,107,.34);
+  border-radius:999px;
+  padding:7px 12px;
+  color:rgba(255,255,255,.82);
+  font-size:.78rem;
+  box-shadow:0 6px 16px rgba(0,0,0,.24);
+}
+
+.bet-pill span{
+  color:var(--gold2);
+  font-weight:900;
+}
+
+.bank-display{
+  position:absolute;
+  left:50%;
+  bottom:226px;
+  transform:translateX(-50%);
+  text-align:center;
+}
+
+.bank-display strong{
+  display:block;
+  font-size:1.95rem;
+  color:#fff4bc;
+  text-shadow:0 3px 0 #5c3b00,0 0 18px rgba(255,220,90,.5);
+}
+
+.bank-display small{
+  display:block;
+  color:rgba(255,241,184,.78);
+  font-size:.58rem;
+  letter-spacing:2px;
+  font-weight:900;
+}
+
+.actions{
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:12px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  background:rgba(6,40,20,.86);
-  border:2px solid rgba(247,213,107,.7);
-  border-radius:15px;
-  overflow:hidden;
+  gap:9px;
 }
 
-.rule-strip div{
-  padding:9px 7px;
-  text-align:center;
-  font-size:.74rem;
+.action{
+  min-height:66px;
+  border:none;
+  border-radius:17px;
+  color:white;
   font-weight:900;
-  line-height:1.25;
+  cursor:pointer;
+  border:4px solid rgba(255,220,120,.58);
+  box-shadow:0 8px 20px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.25);
+  text-shadow:0 2px 0 rgba(0,0,0,.35);
+  display:grid;
+  grid-template-columns:45px 1fr;
+  align-items:center;
+  padding:0 9px;
 }
 
-.rule-strip div:first-child{
-  border-right:1px solid rgba(247,213,107,.5);
+.action:active{
+  transform:scale(.98);
 }
 
-.rule-strip span{
-  color:var(--gold2);
+.action .icon{
+  font-size:2rem;
+}
+
+.action strong{
   display:block;
+  font-size:clamp(1.3rem,6vw,1.55rem);
+  letter-spacing:1.3px;
 }
 
-.player-cards{
-  min-height:108px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.action small{
+  display:block;
+  font-size:.84rem;
+  color:#fff0a6;
 }
 
-.player-cards .kit-card{
-  margin-left:-20px;
-}
+.stand{background:linear-gradient(180deg,#d92b2b,#840707);}
+.hit{background:linear-gradient(180deg,#69c431,#156d04);}
 
-.player-cards .kit-card:first-child{
-  margin-left:0;
-}
-
-.bet-panel{
+.feedback{
   position:absolute;
-  left:10px;
-  right:10px;
-  bottom:99px;
-  background:rgba(8,31,17,.88);
-  border:2px solid rgba(247,213,107,.7);
-  border-radius:18px;
-  padding:9px;
-  box-shadow:0 9px 20px rgba(0,0,0,.28);
+  left:50%;
+  top:49%;
+  transform:translate(-50%,-50%);
+  z-index:40;
+  width:90%;
+  background:linear-gradient(180deg,#251b10,#0f0d09);
+  border:3px solid rgba(255,220,120,.9);
+  border-radius:24px;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.7),0 0 25px rgba(255,220,90,.3);
+  display:none;
 }
 
-.bet-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.feedback.show{
+  display:block;
+  animation:pop .2s ease;
+}
+
+@keyframes pop{
+  from{opacity:0; transform:translate(-50%,-50%) scale(.9);}
+  to{opacity:1; transform:translate(-50%,-50%) scale(1);}
+}
+
+.feedback h2{
   color:var(--gold2);
-  font-weight:900;
-  font-size:.76rem;
-  letter-spacing:.8px;
-  text-transform:uppercase;
+  font-size:1.5rem;
   margin-bottom:8px;
-  gap:8px;
+}
+
+.feedback p{
+  color:rgba(255,255,255,.86);
+  line-height:1.42;
+  font-size:.94rem;
+}
+
+.feedback .cash{
+  display:block;
+  margin:10px 0;
+  font-size:1.95rem;
+  color:#fff4bc;
+  font-weight:900;
+  text-shadow:0 2px 0 #5c3b00;
+}
+
+.next{
+  width:100%;
+  min-height:48px;
+  margin-top:10px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(180deg,#ffd960,#9e6e14);
+  color:#14100a;
+  font-weight:900;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  z-index:80;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+
+.menu-overlay.show{
+  display:flex;
+}
+
+.menu-panel{
+  width:min(480px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#11100c;
+  border:3px solid rgba(255,220,120,.82);
+  border-radius:26px;
+  padding:18px;
+  box-shadow:0 20px 70px rgba(0,0,0,.72);
+}
+
+.menu-panel h2{
+  color:var(--gold2);
+  font-size:1.35rem;
+  margin-bottom:10px;
+}
+
+.menu-section{
+  padding:12px;
+  border:1px solid rgba(247,213,107,.3);
+  border-radius:18px;
+  background:rgba(255,255,255,.045);
+  margin-bottom:10px;
+}
+
+.menu-section h3{
+  color:var(--gold2);
+  font-size:.88rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
+
+.menu-section p,
+.menu-section li{
+  color:rgba(255,255,255,.82);
+  line-height:1.45;
+  font-size:.88rem;
+  margin-bottom:6px;
+}
+
+.menu-section ul{
+  padding-left:18px;
 }
 
 .chips{
@@ -586,11 +682,9 @@ a{
   border:4px dashed rgba(255,255,255,.7);
   color:white;
   font-weight:900;
-  font-size:.73rem;
+  font-size:.68rem;
   cursor:pointer;
-  box-shadow:
-    0 6px 13px rgba(0,0,0,.38),
-    inset 0 0 0 6px rgba(0,0,0,.22);
+  box-shadow:0 6px 13px rgba(0,0,0,.38),inset 0 0 0 6px rgba(0,0,0,.22);
   display:grid;
   place-items:center;
   text-shadow:0 2px 0 rgba(0,0,0,.35);
@@ -611,329 +705,13 @@ a{
 .chip-5000{background:#b91c1c;}
 .chip-10000{background:#111827;}
 
-.reward{
-  position:absolute;
-  left:50%;
-  bottom:278px;
-  transform:translateX(-50%);
-  text-align:center;
-  width:250px;
-}
-
-.big-chip{
-  width:174px;
-  height:78px;
-  margin:auto;
-  border-radius:50%;
-  background:
-    radial-gradient(circle,#2a2923 0 38%,#111 39% 58%,#d4a820 59% 67%,#050505 68%);
-  border:5px solid #c99b1e;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  box-shadow:0 0 30px rgba(255,220,90,.6),0 9px 24px rgba(0,0,0,.45);
-}
-
-.big-chip small{
-  color:var(--gold2);
-  font-size:.58rem;
-  letter-spacing:1.6px;
-  font-weight:900;
-}
-
-.big-chip strong{
-  font-size:1.42rem;
-  color:#fff8cc;
-  text-shadow:0 2px 0 #5c3b00;
-}
-
-.bank-big{
-  margin-top:8px;
-  font-size:2.05rem;
-  font-weight:900;
-  color:#fff4bc;
-  text-shadow:0 3px 0 #5c3b00,0 0 22px rgba(255,220,90,.6);
-}
-
-.bank-label{
-  font-size:.64rem;
-  letter-spacing:2.4px;
-  color:var(--gold2);
-  font-weight:900;
-}
-
-.decision-reminder{
-  position:absolute;
-  left:50%;
-  bottom:12px;
-  transform:translateX(-50%);
-  width:94%;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  background:rgba(5,35,18,.86);
-  border:2px solid rgba(247,213,107,.72);
-  border-radius:14px;
-  overflow:hidden;
-}
-
-.decision-reminder div{
-  padding:8px 5px;
-  text-align:center;
-  font-weight:900;
-  font-size:.75rem;
-}
-
-.decision-reminder div:first-child{
-  border-right:1px solid rgba(247,213,107,.5);
-}
-
-.decision-reminder span{
-  display:block;
-  color:rgba(255,255,255,.78);
-  font-size:.64rem;
-  font-weight:500;
-  margin-top:2px;
-}
-
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:8px;
-  position:sticky;
-  bottom:8px;
-  z-index:30;
-}
-
-.action{
-  min-height:64px;
-  border:none;
-  border-radius:17px;
-  color:white;
-  font-weight:900;
-  cursor:pointer;
-  border:4px solid rgba(255,220,120,.6);
-  box-shadow:
-    0 8px 20px rgba(0,0,0,.35),
-    inset 0 2px 0 rgba(255,255,255,.25);
-  text-shadow:0 2px 0 rgba(0,0,0,.35);
-  display:grid;
-  grid-template-columns:45px 1fr;
-  align-items:center;
-  padding:0 9px;
-}
-
-.action:active{
-  transform:scale(.98);
-}
-
-.action .icon{
-  font-size:2rem;
-}
-
-.action strong{
-  display:block;
-  font-size:clamp(1.25rem,6vw,1.5rem);
-  letter-spacing:1.3px;
-}
-
-.action small{
-  display:block;
-  font-size:.84rem;
-  color:#fff0a6;
-}
-
-.stand{
-  background:linear-gradient(180deg,#d92b2b,#840707);
-}
-
-.hit{
-  background:linear-gradient(180deg,#69c431,#156d04);
-}
-
-.feedback{
-  position:absolute;
-  left:50%;
-  top:48%;
-  transform:translate(-50%,-50%);
-  z-index:40;
-  width:90%;
-  background:linear-gradient(180deg,#251b10,#0f0d09);
-  border:3px solid rgba(255,220,120,.9);
-  border-radius:24px;
-  padding:18px;
-  text-align:center;
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.7),
-    0 0 25px rgba(255,220,90,.3);
-  display:none;
-}
-
-.feedback.show{
-  display:block;
-  animation:pop .2s ease;
-}
-
-@keyframes pop{
-  from{opacity:0; transform:translate(-50%,-50%) scale(.9);}
-  to{opacity:1; transform:translate(-50%,-50%) scale(1);}
-}
-
-.feedback h2{
-  color:var(--gold2);
-  font-size:1.55rem;
-  margin-bottom:8px;
-}
-
-.feedback p{
-  color:rgba(255,255,255,.86);
-  line-height:1.42;
-  font-size:.95rem;
-}
-
-.feedback .cash{
-  display:block;
-  margin:10px 0;
-  font-size:2rem;
-  color:#fff4bc;
-  font-weight:900;
-  text-shadow:0 2px 0 #5c3b00;
-}
-
-.next{
-  width:100%;
-  min-height:48px;
-  margin-top:10px;
-  border:0;
-  border-radius:14px;
-  background:linear-gradient(180deg,#ffd960,#9e6e14);
-  color:#14100a;
-  font-weight:900;
-  font-size:1rem;
-  cursor:pointer;
-}
-
-.help-btn{
-  position:absolute;
-  right:18px;
-  bottom:278px;
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  background:#19150f;
-  border:3px solid rgba(255,220,120,.7);
-  color:#fff8bc;
-  display:grid;
-  place-items:center;
-  font-size:1.45rem;
-  box-shadow:0 8px 14px rgba(0,0,0,.35);
-  cursor:pointer;
-}
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.74);
-  z-index:60;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-}
-
-.overlay.show{
-  display:flex;
-}
-
-.help-card{
-  width:min(480px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#11100c;
-  border:3px solid rgba(255,220,120,.85);
-  border-radius:26px;
-  padding:20px;
-  box-shadow:0 20px 70px rgba(0,0,0,.72);
-}
-
-.help-card h2{
-  color:var(--gold2);
-  margin-bottom:10px;
-}
-
-.help-card p,
-.help-card li{
-  color:rgba(255,255,255,.85);
-  line-height:1.45;
-  margin-bottom:8px;
-}
-
-.help-card ul{
-  padding-left:20px;
-}
-
-.close{
-  width:100%;
-  height:48px;
-  margin-top:10px;
-  border:0;
-  border-radius:14px;
-  background:linear-gradient(180deg,#69c431,#156d04);
-  color:white;
-  font-weight:900;
-  font-size:1rem;
-  cursor:pointer;
-}
-
-/* SIDE PANEL FOR DESKTOP */
-
-.side-panel{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.info-card,
-.links-card{
-  background:rgba(5,25,14,.82);
-  border:2px solid rgba(247,213,107,.48);
-  border-radius:22px;
-  padding:16px;
-  box-shadow:0 9px 25px rgba(0,0,0,.25);
-}
-
-.info-card h2,
-.links-card h2{
-  color:var(--gold2);
-  font-size:1.02rem;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-  margin-bottom:8px;
-}
-
-.info-card p,
-.links-card p{
-  color:rgba(255,255,255,.82);
-  font-size:.9rem;
-  line-height:1.5;
-  margin-bottom:10px;
-}
-
-.info-card ul{
-  padding-left:18px;
-  color:rgba(255,255,255,.82);
-  line-height:1.55;
-  font-size:.9rem;
-}
-
-.subtle-links{
+.links{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
 }
 
-.subtle-link{
+.links a{
   text-decoration:none;
   padding:9px 11px;
   border-radius:999px;
@@ -944,353 +722,211 @@ a{
   font-size:.82rem;
 }
 
-.tip-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
+.close{
+  width:100%;
+  height:48px;
   margin-top:4px;
-  text-decoration:none;
-  padding:10px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,.055);
-  border:1px solid rgba(255,255,255,.16);
-  color:rgba(255,255,255,.82);
-  font-weight:800;
-  font-size:.82rem;
-}
-
-.tip-link:hover,
-.subtle-link:hover{
-  border-color:rgba(247,213,107,.75);
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(180deg,#69c431,#156d04);
+  color:white;
+  font-weight:900;
+  font-size:1rem;
+  cursor:pointer;
 }
 
 .footer{
   text-align:center;
-  font-size:.72rem;
-  color:rgba(255,255,255,.64);
-  letter-spacing:.8px;
-  margin:12px 0 4px;
+  font-size:.68rem;
+  color:rgba(255,255,255,.58);
+  margin-top:8px;
   line-height:1.5;
 }
 
 .footer a{
-  color:rgba(255,241,184,.9);
+  color:rgba(255,241,184,.88);
   font-weight:900;
   text-decoration:none;
-}
-
-.footer-small-links{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:7px;
-  margin-top:6px;
-}
-
-.footer-small-links a{
-  color:rgba(255,255,255,.65);
-  font-size:.68rem;
-  font-weight:700;
-}
-
-@media(max-width:880px){
-  .side-panel{
-    gap:10px;
-  }
-
-  .info-card{
-    display:none;
-  }
-
-  .links-card{
-    padding:13px;
-  }
-
-  .links-card h2{
-    font-size:.9rem;
-    margin-bottom:6px;
-  }
-
-  .links-card p{
-    display:none;
-  }
-
-  .subtle-link,
-  .tip-link{
-    font-size:.76rem;
-    padding:8px 10px;
-  }
-}
-
-@media(max-width:390px){
-  .topbar{
-    gap:5px;
-  }
-
-  .stat{
-    min-height:53px;
-  }
-
-  .stat small{
-    font-size:.56rem;
-  }
-
-  .bet-title{
-    font-size:.68rem;
-  }
-
-  .chip-btn{
-    font-size:.64rem;
-    border-width:3px;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<div class="app">
 
-  <div class="shell">
+  <header class="top">
+    <div class="brand-title">
+      <h1>Colour Blindness 21</h1>
+      <p>Football kit match blackjack</p>
+    </div>
 
-    <main class="game-card">
+    <button class="menu-btn" onclick="openMenu()" aria-label="Open menu">☰</button>
+  </header>
 
-      <header class="header">
-        <div class="title">⚽ Blackjack 21</div>
-        <div class="subtitle">Football kit match training for colour confusion</div>
-      </header>
+  <section class="scorebar">
+    <div class="stat">
+      <small>PLAYER</small>
+      <strong id="handTotal">0 / 21</strong>
+    </div>
 
-      <section class="topbar">
-        <div class="stat">
-          <small>BANK</small>
-          <strong id="bank">$20,000</strong>
+    <div class="stat">
+      <small>DEALER</small>
+      <strong id="dealerTotalTop">0</strong>
+    </div>
+
+    <div class="stat">
+      <small>BANK</small>
+      <strong id="bank">£20,000</strong>
+    </div>
+  </section>
+
+  <main class="table">
+
+    <div class="pitch-line"></div>
+
+    <section class="dealer-hand">
+      <div class="zone-label">Dealer Hand</div>
+      <div class="hand-cards" id="dealerCards"></div>
+      <div class="total-bubble">
+        <strong id="dealerTotal">0</strong>
+      </div>
+    </section>
+
+    <section class="match-area">
+      <div class="zone-label">Match The Dealer Kits</div>
+      <div class="total-bubble">
+        <strong id="cardValue">?</strong>
+      </div>
+
+      <div class="cards-row">
+        <div>
+          <div class="kit-card" id="kitA"></div>
+          <div class="kit-label">KIT A</div>
         </div>
 
-        <div class="stat">
-          <small>HAND</small>
-          <strong id="handTotal">0 / 21</strong>
+        <div class="vs">VS</div>
+
+        <div>
+          <div class="kit-card" id="kitB"></div>
+          <div class="kit-label">KIT B</div>
         </div>
+      </div>
+    </section>
 
-        <div class="stat">
-          <small>BET</small>
-          <strong id="betDisplay">$1,000</strong>
-        </div>
-      </section>
+    <section class="table-brand">
+      <div class="table-brand-main">Colour Blindness 21</div>
+      <div class="table-brand-sub">Check cues beyond colour</div>
+    </section>
 
-      <section class="table" aria-label="Blackjack 21 football kit match game">
+    <section class="player-hand">
+      <div class="zone-label">Player Hand</div>
+      <div class="hand-cards" id="playerCards"></div>
+      <div class="total-bubble">
+        <strong id="playerTotal">0</strong>
+      </div>
+    </section>
 
-        <div class="pitch-line"></div>
+    <section class="bet-pill">
+      Current bet <span id="betDisplay">£1,000</span>
+    </section>
 
-        <section class="mission">
-          <h1>Match the football kit cards</h1>
-          <p>
-            Check number, pattern, sleeves, socks, badge position, shorts, collar and contrast.
-          </p>
-        </section>
+    <section class="bank-display">
+      <strong id="bankBig">£20,000</strong>
+      <small>TOTAL BANK</small>
+    </section>
 
-        <section class="dealer-zone">
-          <div class="zone-label">Dealer Kit Cards</div>
+    <section class="actions">
+      <button class="action stand" onclick="answer(true)">
+        <span class="icon">✋</span>
+        <span>
+          <strong>STAND</strong>
+          <small>Match</small>
+        </span>
+      </button>
 
-          <div class="total-bubble">
-            <strong id="cardValue">?</strong>
-          </div>
+      <button class="action hit" onclick="answer(false)">
+        <span class="icon">✚</span>
+        <span>
+          <strong>HIT</strong>
+          <small>No Match</small>
+        </span>
+      </button>
+    </section>
 
-          <div class="cards-row">
-            <div>
-              <div class="kit-card" id="kitA"></div>
-              <div class="kit-label">KIT A</div>
-            </div>
+    <div class="feedback" id="feedback">
+      <h2 id="feedbackTitle">Correct</h2>
+      <p id="feedbackText">You spotted the kit cue.</p>
+      <span class="cash" id="feedbackCash">+£1,000</span>
+      <button class="next" id="nextBtn" onclick="nextDeal()">NEXT CARD</button>
+    </div>
 
-            <div class="vs">VS</div>
-
-            <div>
-              <div class="kit-card" id="kitB"></div>
-              <div class="kit-label">KIT B</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="brand">
-          <div class="brand-main">Kit Match 21</div>
-          <div class="brand-sub">Train football decisions beyond colour</div>
-        </section>
-
-        <div class="rule-strip">
-          <div>
-            ✅ Right answer
-            <span>Get the card</span>
-          </div>
-
-          <div>
-            ❌ Wrong answer
-            <span>Dealer wins</span>
-          </div>
-        </div>
-
-        <section class="player-zone">
-          <div class="player-cards" id="playerCards"></div>
-
-          <div class="total-bubble">
-            <strong id="playerTotal">0</strong>
-          </div>
-        </section>
-
-        <section class="reward">
-          <div class="big-chip">
-            <small>CURRENT BET</small>
-            <strong id="rewardAmount">$1,000</strong>
-          </div>
-
-          <div class="bank-big" id="bankBig">$20,000</div>
-          <div class="bank-label">TOTAL BANK</div>
-        </section>
-
-        <button class="help-btn" onclick="openHelp()" aria-label="Open help">💡</button>
-
-        <section class="bet-panel">
-          <div class="bet-title">
-            <span>Choose chip</span>
-            <span id="selectedChip">Selected: $1,000</span>
-          </div>
-
-          <div class="chips">
-            <button class="chip-btn chip-100" onclick="setBet(100,this)">$100</button>
-            <button class="chip-btn chip-500" onclick="setBet(500,this)">$500</button>
-            <button class="chip-btn chip-1000 active" onclick="setBet(1000,this)">$1K</button>
-            <button class="chip-btn chip-5000" onclick="setBet(5000,this)">$5K</button>
-            <button class="chip-btn chip-10000" onclick="setBet(10000,this)">$10K</button>
-          </div>
-        </section>
-
-        <div class="decision-reminder">
-          <div>
-            ✋ STAND = MATCH
-            <span>Kits are identical</span>
-          </div>
-
-          <div>
-            ✚ HIT = NO MATCH
-            <span>Kits are different</span>
-          </div>
-        </div>
-
-        <div class="feedback" id="feedback">
-          <h2 id="feedbackTitle">Correct</h2>
-          <p id="feedbackText">You spotted the kit cue.</p>
-          <span class="cash" id="feedbackCash">+$1,000</span>
-          <button class="next" id="nextBtn" onclick="nextDeal()">NEXT CARD</button>
-        </div>
-
-      </section>
-
-      <section class="actions">
-        <button class="action stand" onclick="answer(true)">
-          <span class="icon">✋</span>
-          <span>
-            <strong>STAND</strong>
-            <small>Match</small>
-          </span>
-        </button>
-
-        <button class="action hit" onclick="answer(false)">
-          <span class="icon">✚</span>
-          <span>
-            <strong>HIT</strong>
-            <small>No Match</small>
-          </span>
-        </button>
-      </section>
-
-    </main>
-
-    <aside class="side-panel">
-
-      <section class="info-card">
-        <h2>How It Trains The Eye</h2>
-        <p>
-          This game changes Blackjack into a football kit-recognition challenge. The player must look past colour and compare practical football cues.
-        </p>
-
-        <ul>
-          <li>Shirt number</li>
-          <li>Pattern and stripes</li>
-          <li>Socks and shorts</li>
-          <li>Badge position</li>
-          <li>Collar and sleeve cues</li>
-          <li>Light/dark contrast</li>
-        </ul>
-      </section>
-
-      <section class="info-card">
-        <h2>Rules</h2>
-        <p>
-          Correct answer gets the card value. Wrong answer means dealer wins. Land exactly on 21 to win the round. Go over 21 and the dealer wins.
-        </p>
-      </section>
-
-      <section class="links-card" aria-label="Project links">
-        <h2>More From Cornelius Aurelius</h2>
-        <p>
-          Related colour-blindness in football resources and games.
-        </p>
-
-        <div class="subtle-links">
-          <a class="subtle-link" href="https://cornelius-aurelius.github.io/colour-blindness-in-football-project/" target="_blank" rel="noopener">
-            Colour Blindness in Football Project
-          </a>
-
-          <a class="subtle-link" href="https://cornelius-aurelius.github.io/COLOUR-BLINDNESS-GAMING-HUB/" target="_blank" rel="noopener">
-            Colour Blindness in Football Hub
-          </a>
-
-          <a class="subtle-link" href="https://corneliusaurelius.com" target="_blank" rel="noopener">
-            CorneliusAurelius.com
-          </a>
-
-          <a class="tip-link" href="https://buy.stripe.com/eVqcMY98h5wo6logZOejK00" target="_blank" rel="noopener">
-            ☕ Tip Cornelius
-          </a>
-        </div>
-      </section>
-
-    </aside>
-
-  </div>
+  </main>
 
   <footer class="footer">
-    Created by
-    <a href="https://corneliusaurelius.com" target="_blank" rel="noopener">Cornelius Aurelius</a>.
-
-    <div class="footer-small-links">
-      <a href="https://corneliusaurelius.com" target="_blank" rel="noopener">CorneliusAurelius.com</a>
-      <a href="https://cornelius-aurelius.github.io/colour-blindness-in-football-project/" target="_blank" rel="noopener">Colour Blindness in Football Project</a>
-      <a href="https://cornelius-aurelius.github.io/COLOUR-BLINDNESS-GAMING-HUB/" target="_blank" rel="noopener">Colour Blindness in Football Hub</a>
-      <a href="https://buy.stripe.com/eVqcMY98h5wo6logZOejK00" target="_blank" rel="noopener">Tip Cornelius</a>
-    </div>
+    Created by <a href="https://corneliusaurelius.com" target="_blank" rel="noopener">Cornelius Aurelius</a>
   </footer>
 
 </div>
 
-<div class="overlay" id="helpOverlay">
-  <div class="help-card">
-    <h2>How To Play</h2>
-    <p>
-      This is a football-specific Blackjack 21 game. The cards are football kits. Your job is to decide whether the two kit cards are identical.
-    </p>
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-panel">
+    <h2>Menu</h2>
 
-    <ul>
-      <li><strong>STAND</strong> = the kits match.</li>
-      <li><strong>HIT</strong> = the kits do not match.</li>
-      <li>Correct answer = you receive the card value.</li>
-      <li>Land exactly on <strong>21</strong> = you win the round and receive a blackjack bonus.</li>
-      <li>Go over <strong>21</strong> = dealer wins.</li>
-      <li>Wrong answer = dealer wins.</li>
-      <li>Choose different chip amounts before each decision.</li>
-      <li>Train non-colour cues: number, pattern, socks, sleeves, shorts, badge, collar, shape and contrast.</li>
-    </ul>
+    <section class="menu-section">
+      <h3>Choose Your Chip</h3>
+      <p id="selectedChip">Selected: £1,000</p>
 
-    <button class="close" onclick="closeHelp()">PLAY</button>
+      <div class="chips">
+        <button class="chip-btn chip-100" onclick="setBet(100,this)">£100</button>
+        <button class="chip-btn chip-500" onclick="setBet(500,this)">£500</button>
+        <button class="chip-btn chip-1000 active" onclick="setBet(1000,this)">£1K</button>
+        <button class="chip-btn chip-5000" onclick="setBet(5000,this)">£5K</button>
+        <button class="chip-btn chip-10000" onclick="setBet(10000,this)">£10K</button>
+      </div>
+    </section>
+
+    <section class="menu-section">
+      <h3>How To Play</h3>
+      <ul>
+        <li><strong>STAND</strong> = dealer kit cards match.</li>
+        <li><strong>HIT</strong> = dealer kit cards do not match.</li>
+        <li>Correct answer = player receives the kit card value.</li>
+        <li>Wrong answer = dealer wins.</li>
+        <li>Land exactly on <strong>21</strong> = player wins.</li>
+        <li>Go over <strong>21</strong> = dealer wins.</li>
+      </ul>
+    </section>
+
+    <section class="menu-section">
+      <h3>Training Focus</h3>
+      <p>
+        Check shirt number, pattern, sleeves, socks, shorts, badge position, collar, shape and contrast. Do not rely on colour alone.
+      </p>
+    </section>
+
+    <section class="menu-section">
+      <h3>Links</h3>
+      <div class="links">
+        <a href="https://cornelius-aurelius.github.io/colour-blindness-in-football-project/" target="_blank" rel="noopener">
+          Colour Blindness in Football Project
+        </a>
+
+        <a href="https://cornelius-aurelius.github.io/COLOUR-BLINDNESS-GAMING-HUB/" target="_blank" rel="noopener">
+          Colour Blindness in Football Hub
+        </a>
+
+        <a href="https://corneliusaurelius.com" target="_blank" rel="noopener">
+          CorneliusAurelius.com
+        </a>
+
+        <a href="https://buy.stripe.com/eVqcMY98h5wo6logZOejK00" target="_blank" rel="noopener">
+          Tip Cornelius
+        </a>
+      </div>
+    </section>
+
+    <button class="close" onclick="closeMenu()">Back To Game</button>
   </div>
 </div>
 
@@ -1298,10 +934,12 @@ a{
 let bank = 20000;
 let bet = 1000;
 let total = 0;
+let dealerTotal = 0;
 let currentValue = 0;
 let isMatch = false;
 let locked = false;
 let playerCards = [];
+let dealerCards = [];
 let level = 1;
 let streak = 0;
 
@@ -1371,7 +1009,7 @@ function rand(arr){
 }
 
 function money(n){
-  return "$" + n.toLocaleString();
+  return "£" + n.toLocaleString();
 }
 
 function setBet(amount,btn){
@@ -1390,18 +1028,16 @@ function setBet(amount,btn){
   }
 
   bet = amount;
-
   document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
-
   updateUI();
 }
 
 function safeValue(){
   const remaining = 21 - total;
-  const possible = values.filter(v => v.value <= remaining + 4);
+  const possible = values.filter(v => v.value <= remaining + 5);
 
-  if(remaining > 0 && Math.random() < 0.35){
+  if(remaining > 0 && Math.random() < 0.32){
     const exact = values.find(v => v.value === remaining);
     if(exact) return exact;
   }
@@ -1409,8 +1045,12 @@ function safeValue(){
   return rand(possible.length ? possible : values);
 }
 
-function createKit(){
-  const v = safeValue();
+function dealerValue(){
+  return rand(values.filter(v => v.value <= 10));
+}
+
+function createKit(useSafeValue=true){
+  const v = useSafeValue ? safeValue() : dealerValue();
 
   const main = rand(colours);
   const second = rand(colours.filter(c => c !== main));
@@ -1493,9 +1133,7 @@ function createDifferentKit(k){
 }
 
 function patternCSS(k){
-  if(k.pattern === "plain"){
-    return k.main;
-  }
+  if(k.pattern === "plain") return k.main;
 
   if(k.pattern === "vertical"){
     return `repeating-linear-gradient(90deg, ${k.main} 0 14px, ${k.second} 14px 28px)`;
@@ -1518,10 +1156,7 @@ function patternCSS(k){
   }
 
   if(k.pattern === "spots"){
-    return `
-      radial-gradient(circle, ${k.second} 0 4px, transparent 5px),
-      ${k.main}
-    `;
+    return `radial-gradient(circle, ${k.second} 0 4px, transparent 5px), ${k.main}`;
   }
 
   if(k.pattern === "chevrons"){
@@ -1540,11 +1175,12 @@ function textColour(hex){
   return brightness > 145 ? "#111827" : "#ffffff";
 }
 
-function renderKit(el,k,small=false){
+function renderKit(el,k,mode="normal"){
   const numberColour = textColour(k.main);
   const borderColour = k.short;
 
-  el.className = small ? "kit-card small" : "kit-card";
+  el.className = mode === "small" ? "kit-card small" : mode === "dealer" ? "kit-card dealer-small" : "kit-card";
+
   el.innerHTML = `
     <div class="value">${k.label}</div>
 
@@ -1564,10 +1200,10 @@ function renderKit(el,k,small=false){
 
     ${k.badge !== "none" ? `<div style="
       position:absolute;
-      top:${small ? "34px" : "50px"};
-      ${k.badge === "left" ? "left" : "right"}:${small ? "28px" : "43px"};
-      width:${small ? "8px" : "12px"};
-      height:${small ? "8px" : "12px"};
+      top:${mode === "normal" ? "43px" : "30px"};
+      ${k.badge === "left" ? "left" : "right"}:${mode === "normal" ? "37px" : "25px"};
+      width:${mode === "normal" ? "11px" : "7px"};
+      height:${mode === "normal" ? "11px" : "7px"};
       border-radius:50%;
       background:${numberColour};
       border:1px solid rgba(0,0,0,.35);
@@ -1576,11 +1212,11 @@ function renderKit(el,k,small=false){
 
     <div style="
       position:absolute;
-      top:${small ? "28px" : "42px"};
+      top:${mode === "normal" ? "36px" : "25px"};
       left:50%;
       transform:translateX(-50%);
-      width:${small ? "16px" : "24px"};
-      height:${small ? "8px" : "12px"};
+      width:${mode === "normal" ? "22px" : "14px"};
+      height:${mode === "normal" ? "11px" : "7px"};
       background:${k.collar === "v" ? "transparent" : numberColour};
       clip-path:${k.collar === "v" ? "polygon(0 0, 50% 100%, 100% 0)" : "ellipse(50% 50%)"};
       z-index:9;
@@ -1596,8 +1232,9 @@ function updateUI(){
   document.getElementById("bankBig").textContent = money(bank);
   document.getElementById("handTotal").textContent = total + " / 21";
   document.getElementById("playerTotal").textContent = total;
+  document.getElementById("dealerTotal").textContent = dealerTotal;
+  document.getElementById("dealerTotalTop").textContent = dealerTotal;
   document.getElementById("betDisplay").textContent = money(bet);
-  document.getElementById("rewardAmount").textContent = money(bet);
   document.getElementById("selectedChip").textContent = "Selected: " + money(bet);
 }
 
@@ -1607,9 +1244,32 @@ function renderPlayerCards(){
 
   playerCards.slice(-4).forEach(k => {
     const card = document.createElement("div");
-    renderKit(card,k,true);
+    renderKit(card,k,"small");
     box.appendChild(card);
   });
+}
+
+function renderDealerCards(){
+  const box = document.getElementById("dealerCards");
+  box.innerHTML = "";
+
+  dealerCards.slice(-4).forEach(k => {
+    const card = document.createElement("div");
+    renderKit(card,k,"dealer");
+    box.appendChild(card);
+  });
+}
+
+function dealDealerCard(){
+  const dealerKit = createKit(false);
+  dealerCards.push(dealerKit);
+  dealerTotal += dealerKit.value;
+
+  if(dealerTotal > 21){
+    dealerTotal = 17 + Math.floor(Math.random() * 4);
+  }
+
+  renderDealerCards();
 }
 
 function nextDeal(){
@@ -1621,7 +1281,9 @@ function nextDeal(){
   if(bank <= 0){
     bank = 20000;
     total = 0;
+    dealerTotal = 0;
     playerCards = [];
+    dealerCards = [];
   }
 
   if(bet > bank){
@@ -1631,14 +1293,16 @@ function nextDeal(){
   locked = false;
   document.getElementById("feedback").classList.remove("show");
 
-  const kitA = createKit();
+  dealDealerCard();
+
+  const kitA = createKit(true);
   currentValue = kitA.value;
 
   isMatch = Math.random() < 0.5;
   const kitB = isMatch ? cloneKit(kitA) : createDifferentKit(kitA);
 
-  renderKit(document.getElementById("kitA"),kitA);
-  renderKit(document.getElementById("kitB"),kitB);
+  renderKit(document.getElementById("kitA"),kitA,"normal");
+  renderKit(document.getElementById("kitB"),kitB,"normal");
 
   document.getElementById("cardValue").textContent = currentValue;
 
@@ -1667,8 +1331,8 @@ function answer(playerSaysMatch){
     dealerWins(
       "Dealer Wins",
       isMatch
-        ? "The kits were identical. STAND was the correct call."
-        : "The kits were different. HIT was the correct call."
+        ? "The dealer kit cards were identical. STAND was the correct call."
+        : "The dealer kit cards were different. HIT was the correct call."
     );
     return;
   }
@@ -1676,7 +1340,7 @@ function answer(playerSaysMatch){
   bank += bet;
   streak++;
 
-  const wonKit = createKit();
+  const wonKit = createKit(true);
   wonKit.label = String(currentValue);
   wonKit.value = currentValue;
   playerCards.push(wonKit);
@@ -1689,8 +1353,8 @@ function answer(playerSaysMatch){
     bank += bonus;
 
     showFeedback(
-      "Blackjack 21 — You Win!",
-      "Perfect. You matched the kit cues, landed exactly on 21, and beat the dealer.",
+      "Colour Blindness 21 — You Win!",
+      "Perfect. You matched the dealer kit cards, landed exactly on 21, and beat the dealer.",
       "+" + money(bet + bonus),
       "PLAY AGAIN",
       true
@@ -1709,7 +1373,7 @@ function answer(playerSaysMatch){
 
   showFeedback(
     "Correct Kit Call",
-    "Good decision. You checked the football cues beyond colour and earned another card.",
+    "Good decision. You checked the football cues beyond colour and received another card.",
     "+" + money(bet),
     "NEXT CARD",
     false
@@ -1761,19 +1425,23 @@ function showFeedback(title,text,cash,buttonText,roundOver,temporary=false){
 
 function resetRound(){
   total = 0;
+  dealerTotal = 0;
   playerCards = [];
+  dealerCards = [];
   locked = false;
+
   renderPlayerCards();
+  renderDealerCards();
   updateUI();
   nextDeal();
 }
 
-function openHelp(){
-  document.getElementById("helpOverlay").classList.add("show");
+function openMenu(){
+  document.getElementById("menuOverlay").classList.add("show");
 }
 
-function closeHelp(){
-  document.getElementById("helpOverlay").classList.remove("show");
+function closeMenu(){
+  document.getElementById("menuOverlay").classList.remove("show");
 }
 
 document.addEventListener("keydown", e => {
