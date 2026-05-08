@@ -630,6 +630,47 @@ body::before{
   cursor:pointer;
 }
 
+.training-options{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+
+.training-options a,
+.training-options button,
+.training-answer{
+  width:100%;
+  border:1px solid rgba(247,213,107,.45);
+  background:rgba(255,255,255,.07);
+  color:white;
+  border-radius:14px;
+  padding:12px;
+  font-weight:900;
+  text-decoration:none;
+  text-align:center;
+  cursor:pointer;
+}
+
+.training-options a{
+  color:var(--gold2);
+}
+
+.training-answer{
+  text-align:left;
+  font-weight:800;
+}
+
+.training-answer:hover{
+  border-color:rgba(255,241,184,.9);
+}
+
+.training-note{
+  color:rgba(255,255,255,.76);
+  font-size:.86rem;
+  line-height:1.45;
+  margin-top:8px;
+}
+
 .footer{
   text-align:center;
   font-size:.68rem;
@@ -744,9 +785,7 @@ body::before{
 
     <section class="info-row">
       <div class="bonus hidden" id="bonusPill">2X</div>
-
       <div></div>
-
       <div class="bank-small">
         Bank
         <strong id="bankSmall">£20,000</strong>
@@ -832,7 +871,7 @@ body::before{
         Use visual details: shirt number, kit pattern, sock colour, shorts colour, badge position, collar, shape and contrast.
       </p>
       <p>
-        If your winning hand contains two exact matching kits, the profit is doubled. The small 2X marker appears only when that bonus is active.
+        If your winning hand contains two exact matching kits, the profit is doubled.
       </p>
     </section>
 
@@ -861,6 +900,10 @@ body::before{
   </div>
 </div>
 
+<div class="menu" id="bankruptOverlay">
+  <div class="panel" id="bankruptPanel"></div>
+</div>
+
 <script>
 let bank = 20000;
 let selectedBet = 25;
@@ -873,8 +916,43 @@ let roundActive = false;
 let dealerRevealed = false;
 let hasDoubled = false;
 
+let trainingIndex = 0;
+
 const minBet = 25;
 const chipValues = [25,50,100,250,500,1000,2000,5000];
+
+const trainingQuestions = [
+  {
+    q:"Two kits look similar at speed. What should you check first?",
+    answers:[
+      "Shirt number and kit pattern",
+      "Only the colour",
+      "Guess quickly"
+    ],
+    correct:0,
+    hint:"Try again. Look for a cue beyond colour."
+  },
+  {
+    q:"Two shirts are both dark. What else can help you tell them apart?",
+    answers:[
+      "Socks, shorts and sleeve shape",
+      "Ignore the kits",
+      "Only look at the badge"
+    ],
+    correct:0,
+    hint:"Try again. Look for football details that remain useful when colour is confusing."
+  },
+  {
+    q:"Why can colour alone be risky in football?",
+    answers:[
+      "Lighting, distance and colour confusion can make kits look similar",
+      "Colour is always reliable",
+      "Numbers do not matter"
+    ],
+    correct:0,
+    hint:"Try again. In real football, colour can change with distance, light, shade and speed."
+  }
+];
 
 const ranks = [
   {label:"A", value:11},
@@ -1171,7 +1249,10 @@ function maybeAddExactMatch(){
 function newRound(){
   document.getElementById("feedback").classList.remove("show");
 
-  if(bank <= 0) bank = 20000;
+  if(bank <= 0){
+    showBankruptScreen();
+    return;
+  }
 
   if(selectedBet > bank){
     selectedBet = minBet;
@@ -1319,7 +1400,15 @@ function endRound(title,text,cash){
   dealerRevealed = true;
   renderHands();
   updateUI();
-  showMessage(title,text,cash,"NEXT ROUND");
+
+  const nextLabel = bank <= 0 ? "RESET MONEY" : "NEXT ROUND";
+  showMessage(title,text,cash,nextLabel);
+
+  if(bank <= 0){
+    document.getElementById("nextBtn").onclick = showBankruptScreen;
+  } else {
+    document.getElementById("nextBtn").onclick = newRound;
+  }
 }
 
 function showMessage(title,text,cash,buttonText){
@@ -1328,6 +1417,113 @@ function showMessage(title,text,cash,buttonText){
   document.getElementById("feedbackCash").textContent = cash;
   document.getElementById("nextBtn").textContent = buttonText;
   document.getElementById("feedback").classList.add("show");
+}
+
+function showBankruptScreen(){
+  roundActive = false;
+  document.getElementById("feedback").classList.remove("show");
+
+  document.getElementById("bankruptPanel").innerHTML = `
+    <h2>You’re Out of Money</h2>
+
+    <section class="section">
+      <h3>Reset Option</h3>
+      <p>
+        You can reset your bank to <strong>£5,000</strong>, but first complete 3 quick kit-recognition training checks.
+      </p>
+      <p>
+        These checks train your eye to look beyond colour.
+      </p>
+
+      <div class="training-options">
+        <a href="https://cornelius-aurelius.github.io/colour-blindness-in-football-project/" target="_blank" rel="noopener">
+          Colour Blindness in Football Project
+        </a>
+
+        <button onclick="startResetTraining()">
+          Reset Money Training
+        </button>
+      </div>
+    </section>
+  `;
+
+  document.getElementById("bankruptOverlay").classList.add("show");
+}
+
+function startResetTraining(){
+  trainingIndex = 0;
+  renderTrainingQuestion();
+}
+
+function renderTrainingQuestion(message=""){
+  const q = trainingQuestions[trainingIndex];
+
+  document.getElementById("bankruptPanel").innerHTML = `
+    <h2>Training ${trainingIndex + 1} of 3</h2>
+
+    <section class="section">
+      <h3>Kit Recognition Check</h3>
+      <p>${q.q}</p>
+
+      <div class="training-options">
+        ${q.answers.map((answer,index) => `
+          <button class="training-answer" onclick="answerTraining(${index})">
+            ${answer}
+          </button>
+        `).join("")}
+      </div>
+
+      ${message ? `<p class="training-note">${message}</p>` : ""}
+    </section>
+  `;
+}
+
+function answerTraining(index){
+  const q = trainingQuestions[trainingIndex];
+
+  if(index !== q.correct){
+    renderTrainingQuestion(q.hint);
+    return;
+  }
+
+  trainingIndex++;
+
+  if(trainingIndex >= trainingQuestions.length){
+    completeResetTraining();
+    return;
+  }
+
+  renderTrainingQuestion("Correct. Next check.");
+}
+
+function completeResetTraining(){
+  bank = 5000;
+  selectedBet = 25;
+  currentBet = 25;
+  chipStack = [25];
+
+  document.getElementById("bankruptPanel").innerHTML = `
+    <h2>Training Complete</h2>
+
+    <section class="section">
+      <h3>Bank Reset</h3>
+      <p>
+        Your bank has been reset to <strong>£5,000</strong>.
+      </p>
+      <p>
+        Keep checking kit number, patterns, socks, shorts, badge position, collar, shape and contrast.
+      </p>
+
+      <button class="close" onclick="closeBankruptAndPlay()">Play Again</button>
+    </section>
+  `;
+
+  updateUI();
+}
+
+function closeBankruptAndPlay(){
+  document.getElementById("bankruptOverlay").classList.remove("show");
+  newRound();
 }
 
 function openMenu(){
