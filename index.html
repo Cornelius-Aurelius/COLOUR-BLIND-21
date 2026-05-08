@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Colour Blindness 21 | Football Kit Blackjack | Cornelius Aurelius</title>
-<meta name="description" content="Colour Blindness 21 is a football kit blackjack game by Cornelius Aurelius. Train colour-blind football cues while playing Blackjack 21 with football kit cards." />
+<title>Colour Blindness 21 | Cornelius Aurelius</title>
+<meta name="description" content="Colour Blindness 21 is a football kit blackjack game by Cornelius Aurelius." />
 <meta name="author" content="Cornelius Aurelius" />
 
 <style>
@@ -18,8 +17,6 @@
   --red:#b91616;
   --green:#23820f;
   --blue:#1d4ed8;
-  --cream:#fffdf0;
-  --muted:rgba(255,255,255,.72);
 }
 
 *{
@@ -45,9 +42,9 @@ body::before{
   inset:0;
   pointer-events:none;
   background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 2px, transparent 2px 82px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.016) 0 2px, transparent 2px 82px);
-  opacity:.4;
+    repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 2px, transparent 2px 82px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.014) 0 2px, transparent 2px 82px);
+  opacity:.38;
 }
 
 .app{
@@ -65,7 +62,7 @@ body::before{
   margin-bottom:8px;
 }
 
-.brand-title h1{
+.brand h1{
   font-family:Georgia, "Times New Roman", serif;
   color:var(--gold2);
   font-size:clamp(1.45rem,7vw,2.55rem);
@@ -75,19 +72,11 @@ body::before{
   text-shadow:0 3px 0 #6d4b0c,0 0 16px rgba(255,220,90,.55);
 }
 
-.brand-title p{
-  color:rgba(255,255,255,.66);
-  font-size:.68rem;
-  letter-spacing:1.1px;
-  text-transform:uppercase;
-  margin-top:3px;
-}
-
-.menu-btn{
-  width:48px;
-  height:48px;
+.bulb{
+  width:50px;
+  height:50px;
   border-radius:50%;
-  border:2px solid rgba(247,213,107,.7);
+  border:2px solid rgba(247,213,107,.75);
   background:linear-gradient(180deg,#2d2414,#0e0c08);
   color:var(--gold2);
   font-size:1.45rem;
@@ -128,7 +117,7 @@ body::before{
 
 .table{
   position:relative;
-  min-height:735px;
+  min-height:760px;
   border-radius:26px;
   border:3px solid rgba(247,213,107,.55);
   background:
@@ -140,10 +129,10 @@ body::before{
   overflow:hidden;
 }
 
-.pitch-line{
+.pitch{
   position:absolute;
   left:50%;
-  top:45%;
+  top:46%;
   width:245px;
   height:245px;
   border:2px solid rgba(255,255,255,.12);
@@ -152,18 +141,18 @@ body::before{
   pointer-events:none;
 }
 
-.pitch-line::before{
+.pitch::before{
   content:"";
   position:absolute;
   left:50%;
-  top:-300px;
+  top:-320px;
   width:2px;
-  height:820px;
+  height:860px;
   background:rgba(255,255,255,.1);
 }
 
-.dealer-zone,
-.player-zone{
+.dealer,
+.player{
   position:absolute;
   left:0;
   right:0;
@@ -172,16 +161,16 @@ body::before{
   align-items:center;
 }
 
-.dealer-zone{
-  top:32px;
+.dealer{
+  top:30px;
 }
 
-.player-zone{
-  top:330px;
+.player{
+  top:370px;
 }
 
-.zone-label{
-  min-width:132px;
+.label{
+  min-width:126px;
   text-align:center;
   padding:6px 12px;
   border-radius:999px;
@@ -189,13 +178,31 @@ body::before{
   border:1px solid rgba(247,213,107,.58);
   color:var(--gold2);
   text-transform:uppercase;
-  letter-spacing:1.8px;
+  letter-spacing:1.7px;
   font-weight:900;
-  font-size:.66rem;
-  margin-bottom:7px;
+  font-size:.64rem;
+  margin-bottom:8px;
 }
 
-.total-bubble{
+.hand{
+  min-height:145px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:nowrap;
+  padding:0 10px;
+}
+
+.hand .card{
+  margin-left:-12px;
+}
+
+.hand .card:first-child{
+  margin-left:0;
+}
+
+.bubble{
+  margin-top:12px;
   width:50px;
   height:46px;
   display:grid;
@@ -205,34 +212,15 @@ body::before{
   border-radius:50% 50% 50% 12px;
   transform:rotate(45deg);
   box-shadow:0 7px 14px rgba(0,0,0,.32);
-  margin-bottom:7px;
 }
 
-.total-bubble strong{
+.bubble strong{
   transform:rotate(-45deg);
   color:white;
   font-size:1.15rem;
 }
 
-.hand-cards{
-  min-height:150px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:0;
-  padding:0 10px;
-}
-
-.hand-cards .kit-card{
-  margin-left:-18px;
-}
-
-.hand-cards .kit-card:first-child{
-  margin-left:0;
-}
-
-.kit-card{
+.card{
   width:108px;
   height:146px;
   background:#fffdf0;
@@ -244,38 +232,37 @@ body::before{
   color:#111;
 }
 
-.kit-card.exact-match{
+.card.match-glow{
   box-shadow:
     0 0 0 4px rgba(255,241,184,.75),
     0 0 22px rgba(255,220,90,.75),
     0 8px 15px rgba(0,0,0,.36);
 }
 
-.kit-card.hidden-card{
+.card.back{
   background:
-    radial-gradient(circle at center, rgba(255,255,255,.95) 0 8px, transparent 9px),
+    radial-gradient(circle at center, rgba(255,255,255,.96) 0 8px, transparent 9px),
     repeating-linear-gradient(45deg,#b8202a 0 6px,#fff 6px 9px,#b8202a 9px 15px);
   border:5px solid #eee;
 }
 
-.kit-card.hidden-card::after{
-  content:"CB21";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  font-weight:900;
-  color:rgba(120,0,0,.65);
-  letter-spacing:2px;
-}
-
-.value{
+.corner{
   position:absolute;
   top:5px;
   left:7px;
   font-weight:900;
-  font-size:1.18rem;
+  font-size:1.22rem;
   z-index:5;
+}
+
+.corner-bottom{
+  position:absolute;
+  right:7px;
+  bottom:5px;
+  font-weight:900;
+  font-size:1.22rem;
+  z-index:5;
+  transform:rotate(180deg);
 }
 
 .shirt{
@@ -328,47 +315,22 @@ body::before{
 .sock.left{left:36px;}
 .sock.right{right:36px;}
 
-.cue-text{
+.brand-table{
   position:absolute;
-  bottom:3px;
-  left:0;
-  right:0;
-  text-align:center;
-  font-size:.46rem;
-  color:#333;
-  font-weight:900;
-  letter-spacing:.35px;
-  text-transform:uppercase;
-}
-
-.table-brand{
-  position:absolute;
-  top:248px;
+  top:300px;
   left:50%;
   transform:translateX(-50%);
   width:95%;
   text-align:center;
   pointer-events:none;
-}
-
-.table-brand-main{
   font-family:Georgia, "Times New Roman", serif;
-  color:rgba(247,213,107,.48);
-  font-size:clamp(1.25rem,7vw,1.65rem);
+  color:rgba(247,213,107,.36);
+  font-size:clamp(1.2rem,7vw,1.55rem);
   text-transform:uppercase;
   letter-spacing:3px;
-  transform:rotate(-3deg);
 }
 
-.table-brand-sub{
-  color:rgba(255,255,255,.52);
-  font-size:.58rem;
-  letter-spacing:1.4px;
-  text-transform:uppercase;
-  margin-top:5px;
-}
-
-.bet-row{
+.info-row{
   position:absolute;
   left:14px;
   right:14px;
@@ -379,55 +341,55 @@ body::before{
   gap:8px;
 }
 
-.bet-pill{
+.bet{
   justify-self:center;
-  min-width:118px;
+  min-width:88px;
   text-align:center;
-  background:rgba(10,18,12,.44);
-  border:1px solid rgba(247,213,107,.2);
+  background:rgba(10,18,12,.34);
+  border:1px solid rgba(247,213,107,.16);
   border-radius:999px;
-  padding:6px 10px;
-  color:rgba(255,255,255,.62);
-  font-size:.68rem;
-  box-shadow:0 6px 16px rgba(0,0,0,.16);
+  padding:5px 9px;
+  color:rgba(255,255,255,.46);
+  font-size:.58rem;
 }
 
-.bet-pill span{
+.bet span{
   display:block;
-  color:rgba(255,241,184,.86);
-  font-size:.88rem;
+  color:rgba(255,241,184,.78);
+  font-size:.78rem;
   font-weight:900;
   margin-top:1px;
 }
 
-.bonus-pill{
+.bonus{
   justify-self:start;
-  max-width:150px;
-  background:rgba(255,220,90,.1);
-  border:1px solid rgba(255,220,90,.28);
-  color:rgba(255,241,184,.86);
+  width:38px;
+  height:30px;
   border-radius:999px;
-  padding:6px 9px;
-  font-size:.62rem;
-  line-height:1.15;
-  font-weight:800;
+  display:grid;
+  place-items:center;
+  background:rgba(255,220,90,.08);
+  border:1px solid rgba(255,220,90,.22);
+  color:rgba(255,241,184,.86);
+  font-size:.66rem;
+  font-weight:900;
 }
 
-.bonus-pill.hidden{
+.bonus.hidden{
   visibility:hidden;
 }
 
-.bank-display{
+.bank-small{
   justify-self:end;
   text-align:right;
-  color:rgba(255,255,255,.62);
-  font-size:.64rem;
+  color:rgba(255,255,255,.48);
+  font-size:.58rem;
 }
 
-.bank-display strong{
+.bank-small strong{
   display:block;
   color:#fff4bc;
-  font-size:1.05rem;
+  font-size:.95rem;
   text-shadow:0 2px 0 #5c3b00;
 }
 
@@ -449,7 +411,7 @@ body::before{
   font-weight:900;
   cursor:pointer;
   border:3px solid rgba(255,220,120,.58);
-  box-shadow:0 8px 20px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.25);
+  box-shadow:0 8px 20px rgba(0,0,0,.34), inset 0 2px 0 rgba(255,255,255,.25);
   text-shadow:0 2px 0 rgba(0,0,0,.35);
   display:flex;
   flex-direction:column;
@@ -462,10 +424,6 @@ body::before{
   opacity:.35;
   cursor:not-allowed;
   filter:grayscale(.7);
-}
-
-.action:active{
-  transform:scale(.98);
 }
 
 .action strong{
@@ -502,12 +460,6 @@ body::before{
 
 .feedback.show{
   display:block;
-  animation:pop .2s ease;
-}
-
-@keyframes pop{
-  from{opacity:0; transform:translate(-50%,-50%) scale(.9);}
-  to{opacity:1; transform:translate(-50%,-50%) scale(1);}
 }
 
 .feedback h2{
@@ -544,7 +496,7 @@ body::before{
   cursor:pointer;
 }
 
-.menu-overlay{
+.menu{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.72);
@@ -555,11 +507,11 @@ body::before{
   padding:16px;
 }
 
-.menu-overlay.show{
+.menu.show{
   display:flex;
 }
 
-.menu-panel{
+.panel{
   width:min(520px,100%);
   max-height:90vh;
   overflow:auto;
@@ -570,13 +522,13 @@ body::before{
   box-shadow:0 20px 70px rgba(0,0,0,.72);
 }
 
-.menu-panel h2{
+.panel h2{
   color:var(--gold2);
   font-size:1.35rem;
   margin-bottom:10px;
 }
 
-.menu-section{
+.section{
   padding:12px;
   border:1px solid rgba(247,213,107,.3);
   border-radius:18px;
@@ -584,7 +536,7 @@ body::before{
   margin-bottom:10px;
 }
 
-.menu-section h3{
+.section h3{
   color:var(--gold2);
   font-size:.88rem;
   text-transform:uppercase;
@@ -592,15 +544,15 @@ body::before{
   margin-bottom:8px;
 }
 
-.menu-section p,
-.menu-section li{
+.section p,
+.section li{
   color:rgba(255,255,255,.82);
   line-height:1.45;
   font-size:.88rem;
   margin-bottom:6px;
 }
 
-.menu-section ul{
+.section ul{
   padding-left:18px;
 }
 
@@ -627,7 +579,7 @@ body::before{
   gap:8px;
 }
 
-.chip-btn{
+.chip{
   aspect-ratio:1;
   border-radius:50%;
   border:4px dashed rgba(255,255,255,.72);
@@ -635,13 +587,13 @@ body::before{
   font-weight:900;
   font-size:.68rem;
   cursor:pointer;
-  box-shadow:0 6px 13px rgba(0,0,0,.38),inset 0 0 0 6px rgba(0,0,0,.22);
+  box-shadow:0 6px 13px rgba(0,0,0,.38), inset 0 0 0 6px rgba(0,0,0,.22);
   display:grid;
   place-items:center;
   text-shadow:0 2px 0 rgba(0,0,0,.35);
 }
 
-.chip-btn.active{
+.chip.active{
   transform:translateY(-4px) scale(1.04);
   box-shadow:
     0 0 0 3px var(--gold2),
@@ -650,14 +602,14 @@ body::before{
     inset 0 0 0 6px rgba(0,0,0,.22);
 }
 
-.chip-25{background:#475569;}
-.chip-50{background:#0f766e;}
-.chip-100{background:#1d4ed8;}
-.chip-250{background:#7c3aed;}
-.chip-500{background:#16a34a;}
-.chip-1000{background:#d97706;}
-.chip-2000{background:#be123c;}
-.chip-5000{background:#111827;}
+.c25{background:#475569;}
+.c50{background:#0f766e;}
+.c100{background:#1d4ed8;}
+.c250{background:#7c3aed;}
+.c500{background:#16a34a;}
+.c1000{background:#d97706;}
+.c2000{background:#be123c;}
+.c5000{background:#111827;}
 
 .links{
   display:flex;
@@ -704,11 +656,9 @@ body::before{
 }
 
 @media(max-width:390px){
-  .table{
-    min-height:705px;
-  }
+  .table{min-height:730px;}
 
-  .kit-card{
+  .card{
     width:94px;
     height:128px;
   }
@@ -721,26 +671,9 @@ body::before{
   .sock.left{left:31px;}
   .sock.right{right:31px;}
 
-  .player-zone{
-    top:318px;
-  }
-
-  .table-brand{
-    top:242px;
-  }
-
-  .bet-row{
-    bottom:166px;
-  }
-
-  .bonus-pill{
-    font-size:.55rem;
-    max-width:115px;
-  }
-
-  .bank-display strong{
-    font-size:.9rem;
-  }
+  .player{top:360px;}
+  .brand-table{top:292px;}
+  .info-row{bottom:166px;}
 }
 </style>
 </head>
@@ -750,12 +683,11 @@ body::before{
 <div class="app">
 
   <header class="top">
-    <div class="brand-title">
+    <div class="brand">
       <h1>Colour Blindness 21</h1>
-      <p>Blackjack rules. Football kit cards.</p>
     </div>
 
-    <button class="menu-btn" onclick="openMenu()" aria-label="Open menu">☰</button>
+    <button class="bulb" onclick="openMenu()" aria-label="Open help and settings">💡</button>
   </header>
 
   <section class="scorebar">
@@ -777,40 +709,35 @@ body::before{
 
   <main class="table">
 
-    <div class="pitch-line"></div>
+    <div class="pitch"></div>
 
-    <section class="dealer-zone">
-      <div class="zone-label">Dealer Hand</div>
-      <div class="hand-cards" id="dealerCards"></div>
-
-      <div class="total-bubble">
+    <section class="dealer">
+      <div class="label">Dealer</div>
+      <div class="hand" id="dealerCards"></div>
+      <div class="bubble">
         <strong id="dealerBubble">?</strong>
       </div>
     </section>
 
-    <section class="table-brand">
-      <div class="table-brand-main">Colour Blindness 21</div>
-      <div class="table-brand-sub">Exact kit match bonus pays double profit</div>
-    </section>
+    <div class="brand-table">Colour Blindness 21</div>
 
-    <section class="player-zone">
-      <div class="zone-label">Player Hand</div>
-      <div class="hand-cards" id="playerCards"></div>
-
-      <div class="total-bubble">
+    <section class="player">
+      <div class="label">Player</div>
+      <div class="hand" id="playerCards"></div>
+      <div class="bubble">
         <strong id="playerBubble">0</strong>
       </div>
     </section>
 
-    <section class="bet-row">
-      <div class="bonus-pill hidden" id="bonusPill">Exact Kit Match Bonus Active</div>
+    <section class="info-row">
+      <div class="bonus hidden" id="bonusPill">2X</div>
 
-      <div class="bet-pill">
-        Current bet
+      <div class="bet">
+        Bet
         <span id="betDisplay">£25</span>
       </div>
 
-      <div class="bank-display">
+      <div class="bank-small">
         Bank
         <strong id="bankSmall">£20,000</strong>
       </div>
@@ -829,7 +756,7 @@ body::before{
 
       <button class="action double" id="doubleBtn" onclick="playerDouble()">
         <strong>DOUBLE</strong>
-        <small>One final card</small>
+        <small>Final card</small>
       </button>
     </section>
 
@@ -843,16 +770,16 @@ body::before{
   </main>
 
   <footer class="footer">
-    Created by <a href="https://corneliusaurelius.com" target="_blank" rel="noopener">Cornelius Aurelius</a>
+    <a href="https://corneliusaurelius.com" target="_blank" rel="noopener">Cornelius Aurelius</a>
   </footer>
 
 </div>
 
-<div class="menu-overlay" id="menuOverlay">
-  <div class="menu-panel">
-    <h2>Menu</h2>
+<div class="menu" id="menuOverlay">
+  <div class="panel">
+    <h2>Help & Settings</h2>
 
-    <section class="menu-section">
+    <section class="section">
       <h3>Chip Bet</h3>
       <p id="selectedChip">Current bet: £25</p>
 
@@ -863,42 +790,43 @@ body::before{
       </div>
 
       <div class="chips">
-        <button class="chip-btn chip-25 active" onclick="setBet(25,this)">£25</button>
-        <button class="chip-btn chip-50" onclick="setBet(50,this)">£50</button>
-        <button class="chip-btn chip-100" onclick="setBet(100,this)">£100</button>
-        <button class="chip-btn chip-250" onclick="setBet(250,this)">£250</button>
-        <button class="chip-btn chip-500" onclick="setBet(500,this)">£500</button>
-        <button class="chip-btn chip-1000" onclick="setBet(1000,this)">£1K</button>
-        <button class="chip-btn chip-2000" onclick="setBet(2000,this)">£2K</button>
-        <button class="chip-btn chip-5000" onclick="setBet(5000,this)">£5K</button>
+        <button class="chip c25 active" onclick="setBet(25)">£25</button>
+        <button class="chip c50" onclick="setBet(50)">£50</button>
+        <button class="chip c100" onclick="setBet(100)">£100</button>
+        <button class="chip c250" onclick="setBet(250)">£250</button>
+        <button class="chip c500" onclick="setBet(500)">£500</button>
+        <button class="chip c1000" onclick="setBet(1000)">£1K</button>
+        <button class="chip c2000" onclick="setBet(2000)">£2K</button>
+        <button class="chip c5000" onclick="setBet(5000)">£5K</button>
       </div>
     </section>
 
-    <section class="menu-section">
-      <h3>Colour-Blindness Training Bonus</h3>
-      <p>
-        If your winning hand contains two exact matching football kits, your profit is doubled.
-        This rewards careful recognition of non-colour cues such as shirt number, pattern, badge, socks, shorts and collar.
-      </p>
-    </section>
-
-    <section class="menu-section">
-      <h3>Blackjack Rules</h3>
+    <section class="section">
+      <h3>Rules</h3>
       <ul>
-        <li>Goal: get closer to 21 than the dealer without going over.</li>
-        <li>Player gets 2 cards. Dealer gets 2 cards.</li>
-        <li>One dealer card is hidden until the player stands.</li>
-        <li>2–10 count as face value.</li>
-        <li>Jack, Queen and King count as 10.</li>
-        <li>Ace counts as 1 or 11.</li>
+        <li>Get closer to 21 than the dealer without going over.</li>
         <li>Blackjack pays 3:2.</li>
         <li>Dealer hits on 16 or less.</li>
         <li>Dealer stands on 17 or more, including Soft 17.</li>
-        <li>Same score is a push and the bet is returned.</li>
+        <li>A push returns the bet.</li>
+        <li>Double takes one final card.</li>
       </ul>
     </section>
 
-    <section class="menu-section">
+    <section class="section">
+      <h3>Colour-Blindness Training</h3>
+      <p>
+        The cards show only the card rank and a football kit. No clue labels are written on the kit cards.
+      </p>
+      <p>
+        Use visual details: shirt number, kit pattern, sock colour, shorts colour, badge position, collar, shape and contrast.
+      </p>
+      <p>
+        If your winning hand contains two exact matching kits, the profit is doubled. The small 2X marker appears only when that bonus is active.
+      </p>
+    </section>
+
+    <section class="section">
       <h3>Links</h3>
       <div class="links">
         <a href="https://cornelius-aurelius.github.io/colour-blindness-in-football-project/" target="_blank" rel="noopener">
@@ -966,35 +894,9 @@ const colours = [
   "#fb7185"
 ];
 
-const patterns = [
-  "plain",
-  "vertical",
-  "horizontal",
-  "diagonal",
-  "centreStripe",
-  "half",
-  "spots",
-  "chevrons"
-];
-
-const shorts = [
-  "#111827",
-  "#f8fafc",
-  "#2563eb",
-  "#991b1b",
-  "#16a34a",
-  "#facc15"
-];
-
-const socks = [
-  "#111827",
-  "#f8fafc",
-  "#facc15",
-  "#2563eb",
-  "#ef4444",
-  "#16a34a",
-  "#7c3aed"
-];
+const patterns = ["plain","vertical","horizontal","diagonal","centreStripe","half","spots","chevrons"];
+const shorts = ["#111827","#f8fafc","#2563eb","#991b1b","#16a34a","#facc15"];
+const socks = ["#111827","#f8fafc","#facc15","#2563eb","#ef4444","#16a34a","#7c3aed"];
 
 function rand(arr){
   return arr[Math.floor(Math.random() * arr.length)];
@@ -1004,7 +906,7 @@ function money(n){
   return "£" + Math.round(n).toLocaleString();
 }
 
-function setBet(amount,btn){
+function setBet(amount){
   if(roundActive) return;
 
   if(amount > bank){
@@ -1013,74 +915,60 @@ function setBet(amount,btn){
   }
 
   selectedBet = amount;
-  syncChipButtons();
   updateUI();
 }
 
 function increaseBet(){
   if(roundActive) return;
-
-  const currentIndex = chipValues.indexOf(selectedBet);
-  const next = chipValues[Math.min(currentIndex + 1, chipValues.length - 1)];
-
-  if(next <= bank){
-    selectedBet = next;
-  }
-
-  syncChipButtons();
+  const i = chipValues.indexOf(selectedBet);
+  const next = chipValues[Math.min(i + 1, chipValues.length - 1)];
+  if(next <= bank) selectedBet = next;
   updateUI();
 }
 
 function decreaseBet(){
   if(roundActive) return;
-
-  const currentIndex = chipValues.indexOf(selectedBet);
-  selectedBet = chipValues[Math.max(currentIndex - 1, 0)];
-
-  syncChipButtons();
+  const i = chipValues.indexOf(selectedBet);
+  selectedBet = chipValues[Math.max(i - 1, 0)];
   updateUI();
 }
 
 function resetBet(){
   if(roundActive) return;
-
   selectedBet = 25;
-  syncChipButtons();
   updateUI();
 }
 
-function syncChipButtons(){
-  document.querySelectorAll(".chip-btn").forEach(btn => {
-    const amount = Number(btn.textContent.replace("£","").replace("K","000"));
-    btn.classList.toggle("active", amount === selectedBet);
+function syncChips(){
+  document.querySelectorAll(".chip").forEach(btn => {
+    const raw = btn.textContent.replace("£","").replace("K","000");
+    btn.classList.toggle("active", Number(raw) === selectedBet);
   });
 }
 
-function createCard(forceClone=null){
-  if(forceClone){
-    return JSON.parse(JSON.stringify(forceClone));
+function createCard(copy=null){
+  if(copy){
+    const clone = JSON.parse(JSON.stringify(copy));
+    clone.id = crypto.randomUUID ? crypto.randomUUID() : String(Math.random());
+    return clone;
   }
 
   const rank = rand(ranks);
-
   const main = rand(colours);
   const second = rand(colours.filter(c => c !== main));
-  const sock = rand(socks);
-  const short = rand(shorts);
-  const pattern = rand(patterns);
 
   return {
     id: crypto.randomUUID ? crypto.randomUUID() : String(Math.random()),
     label:rank.label,
     value:rank.value,
-    kitNumber: rand(["2","4","7","8","9","10","11","12","14","17"]),
+    kitNumber:rand(["2","4","7","8","9","10","11","12","14","17"]),
     main,
     second,
-    sock,
-    short,
-    pattern,
-    badge: rand(["left","right","none"]),
-    collar: rand(["round","v"])
+    sock:rand(socks),
+    short:rand(shorts),
+    pattern:rand(patterns),
+    badge:rand(["left","right","none"]),
+    collar:rand(["round","v"])
   };
 }
 
@@ -1098,8 +986,7 @@ function handValue(hand){
     aces--;
   }
 
-  const soft = aces > 0;
-  return {total, soft};
+  return {total, soft:aces > 0};
 }
 
 function isBlackjack(hand){
@@ -1124,11 +1011,7 @@ function hasExactKitMatch(hand){
 
   for(const card of hand){
     const key = kitKey(card);
-
-    if(seen.has(key)){
-      return true;
-    }
-
+    if(seen.has(key)) return true;
     seen.add(key);
   }
 
@@ -1137,35 +1020,13 @@ function hasExactKitMatch(hand){
 
 function patternCSS(k){
   if(k.pattern === "plain") return k.main;
-
-  if(k.pattern === "vertical"){
-    return `repeating-linear-gradient(90deg, ${k.main} 0 14px, ${k.second} 14px 28px)`;
-  }
-
-  if(k.pattern === "horizontal"){
-    return `repeating-linear-gradient(180deg, ${k.main} 0 13px, ${k.second} 13px 26px)`;
-  }
-
-  if(k.pattern === "diagonal"){
-    return `repeating-linear-gradient(45deg, ${k.main} 0 12px, ${k.second} 12px 24px)`;
-  }
-
-  if(k.pattern === "centreStripe"){
-    return `linear-gradient(90deg, ${k.main} 0 38%, ${k.second} 38% 62%, ${k.main} 62% 100%)`;
-  }
-
-  if(k.pattern === "half"){
-    return `linear-gradient(90deg, ${k.main} 0 50%, ${k.second} 50% 100%)`;
-  }
-
-  if(k.pattern === "spots"){
-    return `radial-gradient(circle, ${k.second} 0 4px, transparent 5px), ${k.main}`;
-  }
-
-  if(k.pattern === "chevrons"){
-    return `repeating-linear-gradient(135deg, ${k.main} 0 10px, ${k.second} 10px 14px, ${k.main} 14px 24px)`;
-  }
-
+  if(k.pattern === "vertical") return `repeating-linear-gradient(90deg, ${k.main} 0 14px, ${k.second} 14px 28px)`;
+  if(k.pattern === "horizontal") return `repeating-linear-gradient(180deg, ${k.main} 0 13px, ${k.second} 13px 26px)`;
+  if(k.pattern === "diagonal") return `repeating-linear-gradient(45deg, ${k.main} 0 12px, ${k.second} 12px 24px)`;
+  if(k.pattern === "centreStripe") return `linear-gradient(90deg, ${k.main} 0 38%, ${k.second} 38% 62%, ${k.main} 62% 100%)`;
+  if(k.pattern === "half") return `linear-gradient(90deg, ${k.main} 0 50%, ${k.second} 50% 100%)`;
+  if(k.pattern === "spots") return `radial-gradient(circle, ${k.second} 0 4px, transparent 5px), ${k.main}`;
+  if(k.pattern === "chevrons") return `repeating-linear-gradient(135deg, ${k.main} 0 10px, ${k.second} 10px 14px, ${k.main} 14px 24px)`;
   return k.main;
 }
 
@@ -1179,16 +1040,15 @@ function textColour(hex){
 }
 
 function renderCard(card, hidden=false){
-  if(hidden){
-    return `<div class="kit-card hidden-card"></div>`;
-  }
+  if(hidden) return `<div class="card back"></div>`;
 
   const numberColour = textColour(card.main);
-  const exactClass = hasExactKitMatch(playerHand) && playerHand.some(c => c.id === card.id) ? " exact-match" : "";
+  const glow = hasExactKitMatch(playerHand) && playerHand.some(c => c.id === card.id) ? " match-glow" : "";
 
   return `
-    <div class="kit-card${exactClass}">
-      <div class="value">${card.label}</div>
+    <div class="card${glow}">
+      <div class="corner">${card.label}</div>
+      <div class="corner-bottom">${card.label}</div>
 
       <div
         class="shirt"
@@ -1228,22 +1088,16 @@ function renderCard(card, hidden=false){
         z-index:9;
         opacity:.9;
       "></div>
-
-      <div class="cue-text">${card.pattern} • socks • ${card.badge} badge</div>
     </div>
   `;
 }
 
 function renderHands(){
-  const dealerBox = document.getElementById("dealerCards");
-  const playerBox = document.getElementById("playerCards");
-
-  dealerBox.innerHTML = dealerHand.map((card,index) => {
-    const hidden = index === 1 && !dealerRevealed;
-    return renderCard(card,hidden);
+  document.getElementById("dealerCards").innerHTML = dealerHand.map((card,index) => {
+    return renderCard(card, index === 1 && !dealerRevealed);
   }).join("");
 
-  playerBox.innerHTML = playerHand.map(card => renderCard(card,false)).join("");
+  document.getElementById("playerCards").innerHTML = playerHand.map(card => renderCard(card)).join("");
 }
 
 function updateUI(){
@@ -1267,34 +1121,28 @@ function updateUI(){
 
   document.getElementById("bonusPill").classList.toggle("hidden", !hasExactKitMatch(playerHand));
 
-  syncChipButtons();
+  syncChips();
 }
 
-function maybeAddExactMatchOpportunity(){
+function maybeAddExactMatch(){
   if(playerHand.length === 2 && Math.random() < 0.38){
     playerHand[1] = createCard(playerHand[0]);
-    playerHand[1].id = crypto.randomUUID ? crypto.randomUUID() : String(Math.random());
   }
 }
 
 function newRound(){
   document.getElementById("feedback").classList.remove("show");
 
-  if(bank <= 0){
-    bank = 20000;
-  }
-
-  if(selectedBet > bank){
-    selectedBet = Math.min(25, bank);
-  }
+  if(bank <= 0) bank = 20000;
+  if(selectedBet > bank) selectedBet = Math.min(25,bank);
 
   currentBet = selectedBet;
   bank -= currentBet;
 
-  playerHand = [createCard(), createCard()];
-  maybeAddExactMatchOpportunity();
+  playerHand = [createCard(),createCard()];
+  maybeAddExactMatch();
 
-  dealerHand = [createCard(), createCard()];
+  dealerHand = [createCard(),createCard()];
   dealerRevealed = false;
   hasDoubled = false;
   roundActive = true;
@@ -1311,21 +1159,14 @@ function newRound(){
 
     if(playerBJ && dealerBJ){
       bank += currentBet;
-      endRound("Push", "Both player and dealer have Blackjack. Your bet is returned.", "£0");
+      endRound("Push","Both player and dealer have Blackjack. Your bet is returned.","£0");
     } else if(playerBJ){
       const profit = currentBet * 1.5;
       const finalProfit = hasExactKitMatch(playerHand) ? profit * 2 : profit;
       bank += currentBet + finalProfit;
-
-      endRound(
-        "Blackjack!",
-        hasExactKitMatch(playerHand)
-          ? "Blackjack pays 3:2. Exact Kit Match bonus doubled your profit."
-          : "Ace plus a 10-value card. Blackjack pays 3:2.",
-        "+" + money(finalProfit)
-      );
+      endRound("Blackjack!", hasExactKitMatch(playerHand) ? "Blackjack plus exact kit match bonus." : "Blackjack pays 3:2.", "+" + money(finalProfit));
     } else {
-      endRound("Dealer Blackjack", "Dealer has Blackjack. Dealer wins the round.", "-" + money(currentBet));
+      endRound("Dealer Blackjack","Dealer has Blackjack.","-" + money(currentBet));
     }
   }
 }
@@ -1333,24 +1174,21 @@ function newRound(){
 function playerHit(){
   if(!roundActive) return;
 
-  let newCard;
+  let card;
 
   if(playerHand.length >= 2 && !hasExactKitMatch(playerHand) && Math.random() < 0.22){
-    newCard = createCard(playerHand[rand(playerHand)]);
-    newCard.id = crypto.randomUUID ? crypto.randomUUID() : String(Math.random());
+    card = createCard(rand(playerHand));
   } else {
-    newCard = createCard();
+    card = createCard();
   }
 
-  playerHand.push(newCard);
+  playerHand.push(card);
   renderHands();
 
-  const player = handValue(playerHand);
-
-  if(player.total > 21){
+  if(handValue(playerHand).total > 21){
     dealerRevealed = true;
     renderHands();
-    endRound("Bust", "You went over 21. Dealer wins.", "-" + money(currentBet));
+    endRound("Bust","You went over 21.","-" + money(currentBet));
     return;
   }
 
@@ -1373,12 +1211,10 @@ function playerDouble(){
   playerHand.push(createCard());
   renderHands();
 
-  const player = handValue(playerHand);
-
-  if(player.total > 21){
+  if(handValue(playerHand).total > 21){
     dealerRevealed = true;
     renderHands();
-    endRound("Bust After Double", "You doubled, took one final card, and went over 21.", "-" + money(currentBet));
+    endRound("Bust After Double","You doubled and went over 21.","-" + money(currentBet));
     return;
   }
 
@@ -1401,22 +1237,22 @@ function dealerPlay(){
   dealer = handValue(dealerHand);
 
   if(dealer.total > 21){
-    payWin("Dealer Busts", "Dealer went over 21. You win.");
+    payWin("Dealer Busts","Dealer went over 21.");
     return;
   }
 
   if(player.total > dealer.total){
-    payWin("You Win", "Your hand is closer to 21 than the dealer.");
+    payWin("You Win","Your hand is closer to 21.");
     return;
   }
 
   if(player.total < dealer.total){
-    endRound("Dealer Wins", "Dealer is closer to 21.", "-" + money(currentBet));
+    endRound("Dealer Wins","Dealer is closer to 21.","-" + money(currentBet));
     return;
   }
 
   bank += currentBet;
-  endRound("Push", "Same score. Your bet is returned.", "£0");
+  endRound("Push","Same score. Your bet is returned.","£0");
 }
 
 function payWin(title,text){
@@ -1425,7 +1261,7 @@ function payWin(title,text){
 
   if(hasExactKitMatch(playerHand)){
     profit *= 2;
-    message += " Exact Kit Match bonus doubled your profit.";
+    message += " Exact kit match bonus applied.";
   }
 
   bank += currentBet + profit;
@@ -1441,14 +1277,11 @@ function endRound(title,text,cash){
 }
 
 function showMessage(title,text,cash,buttonText){
-  const fb = document.getElementById("feedback");
-
   document.getElementById("feedbackTitle").textContent = title;
   document.getElementById("feedbackText").textContent = text;
   document.getElementById("feedbackCash").textContent = cash;
   document.getElementById("nextBtn").textContent = buttonText;
-
-  fb.classList.add("show");
+  document.getElementById("feedback").classList.add("show");
 }
 
 function openMenu(){
@@ -1463,15 +1296,6 @@ document.addEventListener("keydown", e => {
   if(e.key.toLowerCase() === "h") playerHit();
   if(e.key.toLowerCase() === "s") playerStand();
   if(e.key.toLowerCase() === "d") playerDouble();
-
-  if(e.key === "1") setBet(25);
-  if(e.key === "2") setBet(50);
-  if(e.key === "3") setBet(100);
-  if(e.key === "4") setBet(250);
-  if(e.key === "5") setBet(500);
-  if(e.key === "6") setBet(1000);
-  if(e.key === "7") setBet(2000);
-  if(e.key === "8") setBet(5000);
 });
 
 newRound();
