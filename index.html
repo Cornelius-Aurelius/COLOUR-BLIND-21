@@ -4,19 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Colour Blindness 21 | Cornelius Aurelius</title>
-<meta name="description" content="Colour Blindness 21 is a football kit-matching blackjack-style colour-blindness game by Cornelius Aurelius." />
+<title>Colour Blindness 21 | Blackjack Football Kit Game | Cornelius Aurelius</title>
+<meta name="description" content="Colour Blindness 21 is a football kit blackjack game by Cornelius Aurelius. Train colour-blind football cues while playing Blackjack 21 with Soft 17 and 3:2 blackjack payout." />
 <meta name="author" content="Cornelius Aurelius" />
 
 <style>
 :root{
-  --grass1:#076131;
-  --grass2:#043e20;
+  --grass1:#075f31;
+  --grass2:#043d20;
   --grass3:#02190c;
   --gold:#f7d56b;
   --gold2:#fff1b8;
   --red:#b91616;
   --green:#23820f;
+  --blue:#1d4ed8;
   --cream:#fffdf0;
   --muted:rgba(255,255,255,.72);
   --shadow:rgba(0,0,0,.38);
@@ -51,7 +52,7 @@ body::before{
 }
 
 .app{
-  width:min(520px,100%);
+  width:min(540px,100%);
   min-height:100vh;
   margin:auto;
   padding:8px;
@@ -65,15 +66,11 @@ body::before{
   margin-bottom:8px;
 }
 
-.brand-title{
-  text-align:left;
-}
-
 .brand-title h1{
   font-family:Georgia, "Times New Roman", serif;
   color:var(--gold2);
-  font-size:clamp(1.55rem,7vw,2.55rem);
-  letter-spacing:1.5px;
+  font-size:clamp(1.5rem,7vw,2.5rem);
+  letter-spacing:1.4px;
   text-transform:uppercase;
   line-height:1;
   text-shadow:0 3px 0 #6d4b0c,0 0 16px rgba(255,220,90,.55);
@@ -94,7 +91,7 @@ body::before{
   border:2px solid rgba(247,213,107,.7);
   background:linear-gradient(180deg,#2d2414,#0e0c08);
   color:var(--gold2);
-  font-size:1.5rem;
+  font-size:1.45rem;
   cursor:pointer;
   box-shadow:0 7px 16px rgba(0,0,0,.35);
 }
@@ -121,13 +118,13 @@ body::before{
 
 .stat small{
   color:var(--gold2);
-  font-size:.56rem;
-  letter-spacing:1.2px;
+  font-size:.55rem;
+  letter-spacing:1.1px;
   font-weight:900;
 }
 
 .stat strong{
-  font-size:1.05rem;
+  font-size:1.02rem;
 }
 
 .table{
@@ -166,9 +163,8 @@ body::before{
   background:rgba(255,255,255,.11);
 }
 
-.dealer-hand,
-.match-area,
-.player-hand{
+.dealer-zone,
+.player-zone{
   position:absolute;
   left:0;
   right:0;
@@ -177,16 +173,12 @@ body::before{
   align-items:center;
 }
 
-.dealer-hand{
-  top:28px;
+.dealer-zone{
+  top:35px;
 }
 
-.match-area{
-  top:190px;
-}
-
-.player-hand{
-  bottom:164px;
+.player-zone{
+  top:330px;
 }
 
 .zone-label{
@@ -224,10 +216,13 @@ body::before{
 }
 
 .hand-cards{
-  min-height:92px;
+  min-height:150px;
   display:flex;
   justify-content:center;
   align-items:center;
+  flex-wrap:wrap;
+  gap:0;
+  padding:0 10px;
 }
 
 .hand-cards .kit-card{
@@ -238,29 +233,8 @@ body::before{
   margin-left:0;
 }
 
-.cards-row{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-}
-
-.vs{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:#111;
-  color:var(--gold2);
-  font-weight:900;
-  border:2px solid rgba(247,213,107,.82);
-  box-shadow:0 0 20px rgba(247,213,107,.48);
-  flex:0 0 auto;
-}
-
 .kit-card{
-  width:112px;
+  width:108px;
   height:146px;
   background:#fffdf0;
   border-radius:13px;
@@ -271,51 +245,22 @@ body::before{
   color:#111;
 }
 
-.kit-card.small{
-  width:68px;
-  height:94px;
-  border-radius:9px;
-  border-width:3px;
+.kit-card.hidden-card{
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,.95) 0 8px, transparent 9px),
+    repeating-linear-gradient(45deg,#b8202a 0 6px,#fff 6px 9px,#b8202a 9px 15px);
+  border:5px solid #eee;
 }
 
-.kit-card.dealer-small{
-  width:70px;
-  height:96px;
-  border-radius:9px;
-  border-width:3px;
-}
-
-@media(max-width:380px){
-  .table{
-    min-height:690px;
-  }
-
-  .kit-card{
-    width:100px;
-    height:132px;
-  }
-
-  .cards-row{
-    gap:8px;
-  }
-
-  .vs{
-    width:38px;
-    height:38px;
-  }
-}
-
-.kit-label{
-  margin-top:4px;
-  text-align:center;
-  font-size:.6rem;
-  background:#162115;
-  color:white;
-  border:1px solid rgba(247,213,107,.38);
-  border-radius:999px;
-  padding:3px 8px;
+.kit-card.hidden-card::after{
+  content:"CB21";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
   font-weight:900;
-  letter-spacing:1px;
+  color:rgba(120,0,0,.65);
+  letter-spacing:2px;
 }
 
 .value{
@@ -327,19 +272,12 @@ body::before{
   z-index:5;
 }
 
-.kit-card.small .value,
-.kit-card.dealer-small .value{
-  font-size:.8rem;
-  top:4px;
-  left:5px;
-}
-
 .shirt{
   position:absolute;
   left:50%;
   top:50%;
-  width:76px;
-  height:84px;
+  width:74px;
+  height:82px;
   transform:translate(-50%,-45%);
   background:var(--shirt-main);
   clip-path:polygon(
@@ -349,13 +287,6 @@ body::before{
     16% 43%, 0 24%
   );
   border:4px solid var(--shirt-border);
-}
-
-.kit-card.small .shirt,
-.kit-card.dealer-small .shirt{
-  width:46px;
-  height:52px;
-  border-width:3px;
 }
 
 .shirt::before{
@@ -374,13 +305,8 @@ body::before{
   transform:translate(-50%,-50%);
   color:var(--number-colour);
   font-weight:900;
-  font-size:1.78rem;
+  font-size:1.72rem;
   text-shadow:0 1px 0 rgba(0,0,0,.25);
-}
-
-.kit-card.small .shirt::after,
-.kit-card.dealer-small .shirt::after{
-  font-size:1rem;
 }
 
 .sock{
@@ -393,22 +319,8 @@ body::before{
   border-radius:3px;
 }
 
-.sock.left{left:38px;}
-.sock.right{right:38px;}
-
-.kit-card.small .sock,
-.kit-card.dealer-small .sock{
-  bottom:7px;
-  width:9px;
-  height:13px;
-  border-width:1px;
-}
-
-.kit-card.small .sock.left,
-.kit-card.dealer-small .sock.left{left:23px;}
-
-.kit-card.small .sock.right,
-.kit-card.dealer-small .sock.right{right:23px;}
+.sock.left{left:36px;}
+.sock.right{right:36px;}
 
 .cue-text{
   position:absolute;
@@ -416,21 +328,16 @@ body::before{
   left:0;
   right:0;
   text-align:center;
-  font-size:.48rem;
+  font-size:.46rem;
   color:#333;
   font-weight:900;
-  letter-spacing:.4px;
+  letter-spacing:.35px;
   text-transform:uppercase;
-}
-
-.kit-card.small .cue-text,
-.kit-card.dealer-small .cue-text{
-  display:none;
 }
 
 .table-brand{
   position:absolute;
-  top:385px;
+  top:250px;
   left:50%;
   transform:translateX(-50%);
   width:95%;
@@ -458,46 +365,23 @@ body::before{
 .bet-pill{
   position:absolute;
   left:50%;
-  bottom:270px;
+  bottom:174px;
   transform:translateX(-50%);
   display:flex;
   align-items:center;
   justify-content:center;
   gap:8px;
-  background:rgba(10,18,12,.68);
-  border:1px solid rgba(247,213,107,.34);
+  background:rgba(10,18,12,.58);
+  border:1px solid rgba(247,213,107,.25);
   border-radius:999px;
-  padding:7px 12px;
-  color:rgba(255,255,255,.82);
-  font-size:.78rem;
-  box-shadow:0 6px 16px rgba(0,0,0,.24);
+  padding:6px 11px;
+  color:rgba(255,255,255,.7);
+  font-size:.72rem;
+  box-shadow:0 6px 16px rgba(0,0,0,.18);
 }
 
 .bet-pill span{
-  color:var(--gold2);
-  font-weight:900;
-}
-
-.bank-display{
-  position:absolute;
-  left:50%;
-  bottom:226px;
-  transform:translateX(-50%);
-  text-align:center;
-}
-
-.bank-display strong{
-  display:block;
-  font-size:1.95rem;
-  color:#fff4bc;
-  text-shadow:0 3px 0 #5c3b00,0 0 18px rgba(255,220,90,.5);
-}
-
-.bank-display small{
-  display:block;
-  color:rgba(255,241,184,.78);
-  font-size:.58rem;
-  letter-spacing:2px;
+  color:rgba(255,241,184,.88);
   font-weight:900;
 }
 
@@ -507,48 +391,52 @@ body::before{
   right:12px;
   bottom:12px;
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:7px;
 }
 
 .action{
   min-height:66px;
   border:none;
-  border-radius:17px;
+  border-radius:16px;
   color:white;
   font-weight:900;
   cursor:pointer;
-  border:4px solid rgba(255,220,120,.58);
+  border:3px solid rgba(255,220,120,.58);
   box-shadow:0 8px 20px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.25);
   text-shadow:0 2px 0 rgba(0,0,0,.35);
-  display:grid;
-  grid-template-columns:45px 1fr;
+  display:flex;
+  flex-direction:column;
   align-items:center;
-  padding:0 9px;
+  justify-content:center;
+  padding:5px;
+}
+
+.action:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+  filter:grayscale(.7);
 }
 
 .action:active{
   transform:scale(.98);
 }
 
-.action .icon{
-  font-size:2rem;
-}
-
 .action strong{
   display:block;
-  font-size:clamp(1.3rem,6vw,1.55rem);
-  letter-spacing:1.3px;
+  font-size:clamp(1rem,4.4vw,1.25rem);
+  letter-spacing:1px;
 }
 
 .action small{
   display:block;
-  font-size:.84rem;
+  font-size:.72rem;
   color:#fff0a6;
 }
 
-.stand{background:linear-gradient(180deg,#d92b2b,#840707);}
 .hit{background:linear-gradient(180deg,#69c431,#156d04);}
+.stand{background:linear-gradient(180deg,#d92b2b,#840707);}
+.double{background:linear-gradient(180deg,#2d8cff,#064d9e);}
 
 .feedback{
   position:absolute;
@@ -578,7 +466,7 @@ body::before{
 
 .feedback h2{
   color:var(--gold2);
-  font-size:1.5rem;
+  font-size:1.45rem;
   margin-bottom:8px;
 }
 
@@ -591,7 +479,7 @@ body::before{
 .feedback .cash{
   display:block;
   margin:10px 0;
-  font-size:1.95rem;
+  font-size:1.85rem;
   color:#fff4bc;
   font-weight:900;
   text-shadow:0 2px 0 #5c3b00;
@@ -626,7 +514,7 @@ body::before{
 }
 
 .menu-panel{
-  width:min(480px,100%);
+  width:min(500px,100%);
   max-height:90vh;
   overflow:auto;
   background:#11100c;
@@ -748,6 +636,33 @@ body::before{
   font-weight:900;
   text-decoration:none;
 }
+
+@media(max-width:380px){
+  .table{
+    min-height:690px;
+  }
+
+  .kit-card{
+    width:94px;
+    height:128px;
+  }
+
+  .shirt{
+    width:64px;
+    height:72px;
+  }
+
+  .sock.left{left:31px;}
+  .sock.right{right:31px;}
+
+  .player-zone{
+    top:320px;
+  }
+
+  .table-brand{
+    top:242px;
+  }
+}
 </style>
 </head>
 
@@ -758,7 +673,7 @@ body::before{
   <header class="top">
     <div class="brand-title">
       <h1>Colour Blindness 21</h1>
-      <p>Football kit match blackjack</p>
+      <p>Blackjack rules. Football kit cards.</p>
     </div>
 
     <button class="menu-btn" onclick="openMenu()" aria-label="Open menu">☰</button>
@@ -767,12 +682,12 @@ body::before{
   <section class="scorebar">
     <div class="stat">
       <small>PLAYER</small>
-      <strong id="handTotal">0 / 21</strong>
+      <strong id="playerScore">0</strong>
     </div>
 
     <div class="stat">
       <small>DEALER</small>
-      <strong id="dealerTotalTop">0</strong>
+      <strong id="dealerScore">?</strong>
     </div>
 
     <div class="stat">
@@ -785,45 +700,26 @@ body::before{
 
     <div class="pitch-line"></div>
 
-    <section class="dealer-hand">
+    <section class="dealer-zone">
       <div class="zone-label">Dealer Hand</div>
       <div class="hand-cards" id="dealerCards"></div>
+
       <div class="total-bubble">
-        <strong id="dealerTotal">0</strong>
-      </div>
-    </section>
-
-    <section class="match-area">
-      <div class="zone-label">Match The Dealer Kits</div>
-      <div class="total-bubble">
-        <strong id="cardValue">?</strong>
-      </div>
-
-      <div class="cards-row">
-        <div>
-          <div class="kit-card" id="kitA"></div>
-          <div class="kit-label">KIT A</div>
-        </div>
-
-        <div class="vs">VS</div>
-
-        <div>
-          <div class="kit-card" id="kitB"></div>
-          <div class="kit-label">KIT B</div>
-        </div>
+        <strong id="dealerBubble">?</strong>
       </div>
     </section>
 
     <section class="table-brand">
       <div class="table-brand-main">Colour Blindness 21</div>
-      <div class="table-brand-sub">Check cues beyond colour</div>
+      <div class="table-brand-sub">Ace can be 1 or 11 • Blackjack pays 3:2 • Dealer stands soft 17</div>
     </section>
 
-    <section class="player-hand">
+    <section class="player-zone">
       <div class="zone-label">Player Hand</div>
       <div class="hand-cards" id="playerCards"></div>
+
       <div class="total-bubble">
-        <strong id="playerTotal">0</strong>
+        <strong id="playerBubble">0</strong>
       </div>
     </section>
 
@@ -831,34 +727,28 @@ body::before{
       Current bet <span id="betDisplay">£1,000</span>
     </section>
 
-    <section class="bank-display">
-      <strong id="bankBig">£20,000</strong>
-      <small>TOTAL BANK</small>
-    </section>
-
     <section class="actions">
-      <button class="action stand" onclick="answer(true)">
-        <span class="icon">✋</span>
-        <span>
-          <strong>STAND</strong>
-          <small>Match</small>
-        </span>
+      <button class="action hit" id="hitBtn" onclick="playerHit()">
+        <strong>HIT</strong>
+        <small>Take card</small>
       </button>
 
-      <button class="action hit" onclick="answer(false)">
-        <span class="icon">✚</span>
-        <span>
-          <strong>HIT</strong>
-          <small>No Match</small>
-        </span>
+      <button class="action stand" id="standBtn" onclick="playerStand()">
+        <strong>STAND</strong>
+        <small>Hold hand</small>
+      </button>
+
+      <button class="action double" id="doubleBtn" onclick="playerDouble()">
+        <strong>DOUBLE</strong>
+        <small>One final card</small>
       </button>
     </section>
 
     <div class="feedback" id="feedback">
-      <h2 id="feedbackTitle">Correct</h2>
-      <p id="feedbackText">You spotted the kit cue.</p>
-      <span class="cash" id="feedbackCash">+£1,000</span>
-      <button class="next" id="nextBtn" onclick="nextDeal()">NEXT CARD</button>
+      <h2 id="feedbackTitle">Round Result</h2>
+      <p id="feedbackText">Result text.</p>
+      <span class="cash" id="feedbackCash">£0</span>
+      <button class="next" id="nextBtn" onclick="newRound()">NEXT ROUND</button>
     </div>
 
   </main>
@@ -887,21 +777,28 @@ body::before{
     </section>
 
     <section class="menu-section">
-      <h3>How To Play</h3>
+      <h3>Blackjack 21 Rules</h3>
       <ul>
-        <li><strong>STAND</strong> = dealer kit cards match.</li>
-        <li><strong>HIT</strong> = dealer kit cards do not match.</li>
-        <li>Correct answer = player receives the kit card value.</li>
-        <li>Wrong answer = dealer wins.</li>
-        <li>Land exactly on <strong>21</strong> = player wins.</li>
-        <li>Go over <strong>21</strong> = dealer wins.</li>
+        <li>Goal: get closer to 21 than the dealer without going over.</li>
+        <li>Player gets 2 cards. Dealer gets 2 cards.</li>
+        <li>One dealer card is hidden until the player stands.</li>
+        <li>2–10 count as face value.</li>
+        <li>Jack, Queen and King count as 10.</li>
+        <li>Ace counts as 1 or 11, whichever helps the hand more.</li>
+        <li>Blackjack is Ace + 10-value card on the first 2 cards.</li>
+        <li>Blackjack pays 3:2.</li>
+        <li>Dealer hits on 16 or less.</li>
+        <li>Dealer stands on 17 or more.</li>
+        <li>Dealer stands on Soft 17.</li>
+        <li>Same score is a push and the bet is returned.</li>
       </ul>
     </section>
 
     <section class="menu-section">
-      <h3>Training Focus</h3>
+      <h3>Colour-Blind Football Training</h3>
       <p>
-        Check shirt number, pattern, sleeves, socks, shorts, badge position, collar, shape and contrast. Do not rely on colour alone.
+        The cards are football kits. The aim is to train attention to non-colour cues:
+        shirt number, pattern, sleeve shape, socks, shorts, contrast and badge position.
       </p>
     </section>
 
@@ -932,19 +829,16 @@ body::before{
 
 <script>
 let bank = 20000;
-let bet = 1000;
-let total = 0;
-let dealerTotal = 0;
-let currentValue = 0;
-let isMatch = false;
-let locked = false;
-let playerCards = [];
-let dealerCards = [];
-let level = 1;
-let streak = 0;
+let selectedBet = 1000;
+let currentBet = 1000;
+let playerHand = [];
+let dealerHand = [];
+let roundActive = false;
+let dealerRevealed = false;
+let hasDoubled = false;
 
-const values = [
-  {label:"A", value:1},
+const ranks = [
+  {label:"A", value:11},
   {label:"2", value:2},
   {label:"3", value:3},
   {label:"4", value:4},
@@ -1009,48 +903,25 @@ function rand(arr){
 }
 
 function money(n){
-  return "£" + n.toLocaleString();
+  return "£" + Math.round(n).toLocaleString();
 }
 
 function setBet(amount,btn){
-  if(locked) return;
+  if(roundActive) return;
 
   if(amount > bank){
-    showFeedback(
-      "Not Enough Bank",
-      "Choose a smaller chip. Your selected chip is higher than your current bank.",
-      "Bank: " + money(bank),
-      "OK",
-      false,
-      true
-    );
+    showMessage("Not Enough Bank", "Choose a smaller chip.", "Bank: " + money(bank), "OK");
     return;
   }
 
-  bet = amount;
+  selectedBet = amount;
   document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   updateUI();
 }
 
-function safeValue(){
-  const remaining = 21 - total;
-  const possible = values.filter(v => v.value <= remaining + 5);
-
-  if(remaining > 0 && Math.random() < 0.32){
-    const exact = values.find(v => v.value === remaining);
-    if(exact) return exact;
-  }
-
-  return rand(possible.length ? possible : values);
-}
-
-function dealerValue(){
-  return rand(values.filter(v => v.value <= 10));
-}
-
-function createKit(useSafeValue=true){
-  const v = useSafeValue ? safeValue() : dealerValue();
+function createCard(){
+  const rank = rand(ranks);
 
   const main = rand(colours);
   const second = rand(colours.filter(c => c !== main));
@@ -1059,77 +930,39 @@ function createKit(useSafeValue=true){
   const pattern = rand(patterns);
 
   return {
-    label:v.label,
-    value:v.value,
-    number: rand(["2","4","7","8","9","10","11","12","14","17"]),
+    label:rank.label,
+    value:rank.value,
+    kitNumber: rand(["2","4","7","8","9","10","11","12","14","17"]),
     main,
     second,
     sock,
     short,
     pattern,
-    sleeve: rand(["same","contrast"]),
     badge: rand(["left","right","none"]),
     collar: rand(["round","v"])
   };
 }
 
-function cloneKit(k){
-  return JSON.parse(JSON.stringify(k));
+function handValue(hand){
+  let total = 0;
+  let aces = 0;
+
+  hand.forEach(card => {
+    total += card.value;
+    if(card.label === "A") aces++;
+  });
+
+  while(total > 21 && aces > 0){
+    total -= 10;
+    aces--;
+  }
+
+  const soft = aces > 0;
+  return {total, soft};
 }
 
-function createDifferentKit(k){
-  const d = cloneKit(k);
-
-  let changes = ["number","pattern","sock","short","sleeve","badge","collar"];
-
-  if(level > 1) changes.push("second");
-  if(level > 2) changes.push("main");
-  if(level > 3) changes.push("tinyCombo");
-
-  const change = rand(changes);
-
-  if(change === "number"){
-    d.number = rand(["2","4","7","8","9","10","11","12","14","17"].filter(x => x !== k.number));
-  }
-
-  if(change === "pattern"){
-    d.pattern = rand(patterns.filter(x => x !== k.pattern));
-  }
-
-  if(change === "sock"){
-    d.sock = rand(socks.filter(x => x !== k.sock));
-  }
-
-  if(change === "short"){
-    d.short = rand(shorts.filter(x => x !== k.short));
-  }
-
-  if(change === "sleeve"){
-    d.sleeve = k.sleeve === "same" ? "contrast" : "same";
-  }
-
-  if(change === "badge"){
-    d.badge = rand(["left","right","none"].filter(x => x !== k.badge));
-  }
-
-  if(change === "collar"){
-    d.collar = k.collar === "round" ? "v" : "round";
-  }
-
-  if(change === "second"){
-    d.second = rand(colours.filter(x => x !== k.second));
-  }
-
-  if(change === "main"){
-    d.main = rand(colours.filter(x => x !== k.main));
-  }
-
-  if(change === "tinyCombo"){
-    d.sock = rand(socks.filter(x => x !== k.sock));
-    d.badge = rand(["left","right","none"].filter(x => x !== k.badge));
-  }
-
-  return d;
+function isBlackjack(hand){
+  return hand.length === 2 && handValue(hand).total === 21;
 }
 
 function patternCSS(k){
@@ -1175,265 +1008,233 @@ function textColour(hex){
   return brightness > 145 ? "#111827" : "#ffffff";
 }
 
-function renderKit(el,k,mode="normal"){
-  const numberColour = textColour(k.main);
-  const borderColour = k.short;
+function renderCard(card, hidden=false){
+  if(hidden){
+    return `<div class="kit-card hidden-card"></div>`;
+  }
 
-  el.className = mode === "small" ? "kit-card small" : mode === "dealer" ? "kit-card dealer-small" : "kit-card";
+  const numberColour = textColour(card.main);
 
-  el.innerHTML = `
-    <div class="value">${k.label}</div>
+  return `
+    <div class="kit-card">
+      <div class="value">${card.label}</div>
 
-    <div
-      class="shirt"
-      data-num="${k.number}"
-      style="
-        --shirt-main:${k.main};
-        --shirt-border:${borderColour};
-        --shirt-pattern:${patternCSS(k)};
-        --number-colour:${numberColour};
-      "
-    ></div>
+      <div
+        class="shirt"
+        data-num="${card.kitNumber}"
+        style="
+          --shirt-main:${card.main};
+          --shirt-border:${card.short};
+          --shirt-pattern:${patternCSS(card)};
+          --number-colour:${numberColour};
+        "
+      ></div>
 
-    <div class="sock left" style="--sock-colour:${k.sock}"></div>
-    <div class="sock right" style="--sock-colour:${k.sock}"></div>
+      <div class="sock left" style="--sock-colour:${card.sock}"></div>
+      <div class="sock right" style="--sock-colour:${card.sock}"></div>
 
-    ${k.badge !== "none" ? `<div style="
-      position:absolute;
-      top:${mode === "normal" ? "43px" : "30px"};
-      ${k.badge === "left" ? "left" : "right"}:${mode === "normal" ? "37px" : "25px"};
-      width:${mode === "normal" ? "11px" : "7px"};
-      height:${mode === "normal" ? "11px" : "7px"};
-      border-radius:50%;
-      background:${numberColour};
-      border:1px solid rgba(0,0,0,.35);
-      z-index:8;
-    "></div>` : ""}
+      ${card.badge !== "none" ? `<div style="
+        position:absolute;
+        top:43px;
+        ${card.badge === "left" ? "left" : "right"}:37px;
+        width:11px;
+        height:11px;
+        border-radius:50%;
+        background:${numberColour};
+        border:1px solid rgba(0,0,0,.35);
+        z-index:8;
+      "></div>` : ""}
 
-    <div style="
-      position:absolute;
-      top:${mode === "normal" ? "36px" : "25px"};
-      left:50%;
-      transform:translateX(-50%);
-      width:${mode === "normal" ? "22px" : "14px"};
-      height:${mode === "normal" ? "11px" : "7px"};
-      background:${k.collar === "v" ? "transparent" : numberColour};
-      clip-path:${k.collar === "v" ? "polygon(0 0, 50% 100%, 100% 0)" : "ellipse(50% 50%)"};
-      z-index:9;
-      opacity:.9;
-    "></div>
+      <div style="
+        position:absolute;
+        top:36px;
+        left:50%;
+        transform:translateX(-50%);
+        width:22px;
+        height:11px;
+        background:${card.collar === "v" ? "transparent" : numberColour};
+        clip-path:${card.collar === "v" ? "polygon(0 0, 50% 100%, 100% 0)" : "ellipse(50% 50%)"};
+        z-index:9;
+        opacity:.9;
+      "></div>
 
-    <div class="cue-text">${k.pattern} • socks • ${k.badge} badge</div>
+      <div class="cue-text">${card.pattern} • socks • ${card.badge} badge</div>
+    </div>
   `;
 }
 
+function renderHands(){
+  const dealerBox = document.getElementById("dealerCards");
+  const playerBox = document.getElementById("playerCards");
+
+  dealerBox.innerHTML = dealerHand.map((card,index) => {
+    const hidden = index === 1 && !dealerRevealed;
+    return renderCard(card,hidden);
+  }).join("");
+
+  playerBox.innerHTML = playerHand.map(card => renderCard(card,false)).join("");
+}
+
 function updateUI(){
+  const player = handValue(playerHand);
+  const dealer = dealerRevealed ? handValue(dealerHand) : handValue([dealerHand[0]].filter(Boolean));
+
   document.getElementById("bank").textContent = money(bank);
-  document.getElementById("bankBig").textContent = money(bank);
-  document.getElementById("handTotal").textContent = total + " / 21";
-  document.getElementById("playerTotal").textContent = total;
-  document.getElementById("dealerTotal").textContent = dealerTotal;
-  document.getElementById("dealerTotalTop").textContent = dealerTotal;
-  document.getElementById("betDisplay").textContent = money(bet);
-  document.getElementById("selectedChip").textContent = "Selected: " + money(bet);
+  document.getElementById("betDisplay").textContent = money(selectedBet);
+  document.getElementById("selectedChip").textContent = "Selected: " + money(selectedBet);
+
+  document.getElementById("playerScore").textContent = playerHand.length ? player.total : "0";
+  document.getElementById("playerBubble").textContent = playerHand.length ? player.total : "0";
+
+  document.getElementById("dealerScore").textContent = dealerHand.length ? dealer.total : "?";
+  document.getElementById("dealerBubble").textContent = dealerHand.length ? dealer.total : "?";
+
+  document.getElementById("hitBtn").disabled = !roundActive;
+  document.getElementById("standBtn").disabled = !roundActive;
+  document.getElementById("doubleBtn").disabled = !roundActive || playerHand.length !== 2 || bank < currentBet || hasDoubled;
 }
 
-function renderPlayerCards(){
-  const box = document.getElementById("playerCards");
-  box.innerHTML = "";
-
-  playerCards.slice(-4).forEach(k => {
-    const card = document.createElement("div");
-    renderKit(card,k,"small");
-    box.appendChild(card);
-  });
-}
-
-function renderDealerCards(){
-  const box = document.getElementById("dealerCards");
-  box.innerHTML = "";
-
-  dealerCards.slice(-4).forEach(k => {
-    const card = document.createElement("div");
-    renderKit(card,k,"dealer");
-    box.appendChild(card);
-  });
-}
-
-function dealDealerCard(){
-  const dealerKit = createKit(false);
-  dealerCards.push(dealerKit);
-  dealerTotal += dealerKit.value;
-
-  if(dealerTotal > 21){
-    dealerTotal = 17 + Math.floor(Math.random() * 4);
-  }
-
-  renderDealerCards();
-}
-
-function nextDeal(){
-  if(total >= 21){
-    resetRound();
-    return;
-  }
+function newRound(){
+  document.getElementById("feedback").classList.remove("show");
 
   if(bank <= 0){
     bank = 20000;
-    total = 0;
-    dealerTotal = 0;
-    playerCards = [];
-    dealerCards = [];
   }
 
-  if(bet > bank){
-    bet = Math.min(1000,bank);
+  if(selectedBet > bank){
+    selectedBet = Math.min(1000, bank);
   }
 
-  locked = false;
-  document.getElementById("feedback").classList.remove("show");
+  currentBet = selectedBet;
+  bank -= currentBet;
 
-  dealDealerCard();
+  playerHand = [createCard(), createCard()];
+  dealerHand = [createCard(), createCard()];
+  dealerRevealed = false;
+  hasDoubled = false;
+  roundActive = true;
 
-  const kitA = createKit(true);
-  currentValue = kitA.value;
+  renderHands();
+  updateUI();
 
-  isMatch = Math.random() < 0.5;
-  const kitB = isMatch ? cloneKit(kitA) : createDifferentKit(kitA);
+  const playerBJ = isBlackjack(playerHand);
+  const dealerBJ = isBlackjack(dealerHand);
 
-  renderKit(document.getElementById("kitA"),kitA,"normal");
-  renderKit(document.getElementById("kitB"),kitB,"normal");
+  if(playerBJ || dealerBJ){
+    dealerRevealed = true;
+    renderHands();
 
-  document.getElementById("cardValue").textContent = currentValue;
+    if(playerBJ && dealerBJ){
+      bank += currentBet;
+      endRound("Push", "Both player and dealer have Blackjack. Your bet is returned.", "£0");
+    } else if(playerBJ){
+      const payout = currentBet + currentBet * 1.5;
+      bank += payout;
+      endRound("Blackjack!", "Ace plus a 10-value card. Blackjack pays 3:2.", "+" + money(currentBet * 1.5));
+    } else {
+      endRound("Dealer Blackjack", "Dealer has Blackjack. Dealer wins the round.", "-" + money(currentBet));
+    }
+  }
+}
+
+function playerHit(){
+  if(!roundActive) return;
+
+  playerHand.push(createCard());
+  renderHands();
+
+  const player = handValue(playerHand);
+
+  if(player.total > 21){
+    dealerRevealed = true;
+    renderHands();
+    endRound("Bust", "You went over 21. Dealer wins.", "-" + money(currentBet));
+    return;
+  }
 
   updateUI();
 }
 
-function answer(playerSaysMatch){
-  if(locked) return;
-  locked = true;
-
-  if(bet > bank){
-    showFeedback(
-      "Choose Smaller Chip",
-      "Your selected chip is higher than your bank.",
-      "Bank: " + money(bank),
-      "OK",
-      false,
-      true
-    );
-    return;
-  }
-
-  const correct = playerSaysMatch === isMatch;
-
-  if(!correct){
-    dealerWins(
-      "Dealer Wins",
-      isMatch
-        ? "The dealer kit cards were identical. STAND was the correct call."
-        : "The dealer kit cards were different. HIT was the correct call."
-    );
-    return;
-  }
-
-  bank += bet;
-  streak++;
-
-  const wonKit = createKit(true);
-  wonKit.label = String(currentValue);
-  wonKit.value = currentValue;
-  playerCards.push(wonKit);
-
-  total += currentValue;
-  renderPlayerCards();
-
-  if(total === 21){
-    const bonus = bet * 3;
-    bank += bonus;
-
-    showFeedback(
-      "Colour Blindness 21 — You Win!",
-      "Perfect. You matched the dealer kit cards, landed exactly on 21, and beat the dealer.",
-      "+" + money(bet + bonus),
-      "PLAY AGAIN",
-      true
-    );
-
-    updateUI();
-    return;
-  }
-
-  if(total > 21){
-    dealerWins("Bust — Dealer Wins", "You went over 21. Dealer wins the round.");
-    return;
-  }
-
-  level = Math.min(5, 1 + Math.floor(streak / 3));
-
-  showFeedback(
-    "Correct Kit Call",
-    "Good decision. You checked the football cues beyond colour and received another card.",
-    "+" + money(bet),
-    "NEXT CARD",
-    false
-  );
-
-  updateUI();
+function playerStand(){
+  if(!roundActive) return;
+  dealerPlay();
 }
 
-function dealerWins(title,text){
-  streak = 0;
-  bank = Math.max(0, bank - bet);
+function playerDouble(){
+  if(!roundActive || playerHand.length !== 2 || bank < currentBet || hasDoubled) return;
 
-  showFeedback(
-    title,
-    text + " Next time, check number, socks, pattern, badge, shorts, collar and sleeve details.",
-    "-" + money(bet),
-    "NEW ROUND",
-    true
-  );
+  bank -= currentBet;
+  currentBet *= 2;
+  hasDoubled = true;
 
-  updateUI();
+  playerHand.push(createCard());
+  renderHands();
+
+  const player = handValue(playerHand);
+
+  if(player.total > 21){
+    dealerRevealed = true;
+    renderHands();
+    endRound("Bust After Double", "You doubled, took one final card, and went over 21.", "-" + money(currentBet));
+    return;
+  }
+
+  dealerPlay();
 }
 
-function showFeedback(title,text,cash,buttonText,roundOver,temporary=false){
+function dealerPlay(){
+  dealerRevealed = true;
+
+  let dealer = handValue(dealerHand);
+
+  while(dealer.total < 17){
+    dealerHand.push(createCard());
+    dealer = handValue(dealerHand);
+  }
+
+  renderHands();
+
+  const player = handValue(playerHand);
+  dealer = handValue(dealerHand);
+
+  if(dealer.total > 21){
+    bank += currentBet * 2;
+    endRound("Dealer Busts", "Dealer went over 21. You win.", "+" + money(currentBet));
+    return;
+  }
+
+  if(player.total > dealer.total){
+    bank += currentBet * 2;
+    endRound("You Win", "Your hand is closer to 21 than the dealer.", "+" + money(currentBet));
+    return;
+  }
+
+  if(player.total < dealer.total){
+    endRound("Dealer Wins", "Dealer is closer to 21.", "-" + money(currentBet));
+    return;
+  }
+
+  bank += currentBet;
+  endRound("Push", "Same score. Your bet is returned.", "£0");
+}
+
+function endRound(title,text,cash){
+  roundActive = false;
+  dealerRevealed = true;
+  renderHands();
+  updateUI();
+  showMessage(title,text,cash,"NEXT ROUND");
+}
+
+function showMessage(title,text,cash,buttonText){
   const fb = document.getElementById("feedback");
+
   document.getElementById("feedbackTitle").textContent = title;
   document.getElementById("feedbackText").textContent = text;
   document.getElementById("feedbackCash").textContent = cash;
   document.getElementById("nextBtn").textContent = buttonText;
 
-  fb.dataset.roundOver = roundOver ? "yes" : "no";
-  fb.dataset.temporary = temporary ? "yes" : "no";
   fb.classList.add("show");
-
-  document.getElementById("nextBtn").onclick = () => {
-    if(fb.dataset.temporary === "yes"){
-      fb.classList.remove("show");
-      locked = false;
-      return;
-    }
-
-    if(fb.dataset.roundOver === "yes"){
-      resetRound();
-    } else {
-      nextDeal();
-    }
-  };
-}
-
-function resetRound(){
-  total = 0;
-  dealerTotal = 0;
-  playerCards = [];
-  dealerCards = [];
-  locked = false;
-
-  renderPlayerCards();
-  renderDealerCards();
-  updateUI();
-  nextDeal();
 }
 
 function openMenu(){
@@ -1445,8 +1246,9 @@ function closeMenu(){
 }
 
 document.addEventListener("keydown", e => {
-  if(e.key.toLowerCase() === "s") answer(true);
-  if(e.key.toLowerCase() === "h") answer(false);
+  if(e.key.toLowerCase() === "h") playerHit();
+  if(e.key.toLowerCase() === "s") playerStand();
+  if(e.key.toLowerCase() === "d") playerDouble();
 
   if(e.key === "1") document.querySelector(".chip-100").click();
   if(e.key === "2") document.querySelector(".chip-500").click();
@@ -1455,7 +1257,7 @@ document.addEventListener("keydown", e => {
   if(e.key === "5") document.querySelector(".chip-10000").click();
 });
 
-resetRound();
+newRound();
 </script>
 
 </body>
