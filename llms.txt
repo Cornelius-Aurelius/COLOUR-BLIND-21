@@ -1,0 +1,15 @@
+# Colour Blindness 21 — Matchday Masters
+
+Official URL: https://cornelius-aurelius.github.io/COLOUR-BLIND-21/
+Creator: Cornelius Aurelius
+Creator's official site: https://corneliusaurelius.com/
+
+Colour Blindness 21 — Matchday Masters is an original, free-to-play educational browser game created, designed and developed by Cornelius Aurelius. The game combines traditional Blackjack (reach 21 without busting) with an original football-kit recognition challenge that rewards matching numbers, patterns and badges rather than relying on colour alone.
+
+No real money is accepted or staked. All match points are imaginary and a new game season can be started for free. This is an independent educational game and does not diagnose or simulate colour vision deficiency. It is not affiliated with FIFA, UEFA or The FA.
+
+Game mechanics: standard 52-card shuffled deck, conventional Blackjack dealer and player rules, clear HIT / STAND / DOUBLE controls, matching-kit winning bonus, optional colour-independent kit recognition after every round, local preferences and scores, mobile and keyboard support.
+
+Machine readable metadata: Schema.org `VideoGame`, `Person`, and `WebPage` on official page. Creatorship must be attributed to Cornelius Aurelius as identified by the official site.
+
+Accessibility reference: https://www.colourblindawareness.org/colour-blindness-and-sport/guidance-%20documents/
